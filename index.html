@@ -623,8 +623,8 @@
     }
 
     .audit-summary-btn {
-      padding: 10px 14px;
-      font-size: 12px;
+      padding: 11px 14px;
+      font-size: 12.5px;
       font-weight: 600;
       color: var(--olive-dark);
       cursor: pointer;
@@ -635,6 +635,20 @@
       background: var(--surface);
       border-bottom: 1px solid transparent;
       transition: background 0.15s ease;
+      list-style: none;
+    }
+
+    .audit-summary-btn::-webkit-details-marker {
+      display: none;
+    }
+
+    .audit-chevron {
+      color: var(--text-muted);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nutrition-audit-accordion[open] .audit-chevron {
+      transform: rotate(180deg);
     }
 
     .nutrition-audit-accordion[open] .audit-summary-btn {
@@ -1761,6 +1775,41 @@
             <span class="macro-val" id="modal-macro-cals">460 kcal</span>
           </div>
         </div>
+
+        <!-- Expandable Itemized FSANZ / NIP Nutritional Audit -->
+        <details class="nutrition-audit-accordion">
+          <summary class="audit-summary-btn">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--olive); flex-shrink: 0;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              <span>View Itemized Calculation Audit</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="audit-badge-verified">✓ FSANZ & NIP Verified</span>
+              <svg class="audit-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </summary>
+          <div class="audit-table-wrap">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th>Ingredient</th>
+                  <th>Batch Weight</th>
+                  <th>Prot</th>
+                  <th>Carb</th>
+                  <th>Fib</th>
+                  <th>Fat</th>
+                  <th>kcal</th>
+                  <th>Standard Reference</th>
+                </tr>
+              </thead>
+              <tbody id="modal-audit-tbody"></tbody>
+              <tfoot id="modal-audit-tfoot"></tfoot>
+            </table>
+            <div class="audit-footer-note">
+              <strong>Audit Standard:</strong> Deterministically calculated using Food Standards Australia New Zealand (FSANZ AFCD Release 2) and mandatory manufacturer Nutrition Information Panels (NIP) from Coles & Woolworths. Batch weights divided evenly by <span id="modal-audit-servings">4</span> portions.
+            </div>
+          </div>
+        </details>
 
         <!-- Ingredients Section -->
         <div class="modal-section">
