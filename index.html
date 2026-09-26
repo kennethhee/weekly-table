@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Weekly Table">
+  <meta name="theme-color" content="#FAF8F5">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23435340'/><circle cx='50' cy='50' r='36' fill='%23FAF8F5'/><circle cx='50' cy='50' r='26' fill='%23EFF3EE'/><path d='M40 32v36M60 32v36M35 48h10' stroke='%23435340' stroke-width='4' stroke-linecap='round'/></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23435340'/><circle cx='50' cy='50' r='34' fill='%23FAF8F5'/><circle cx='50' cy='50' r='25' fill='%23EFF3EE'/><path d='M42 34v32M58 34v32' stroke='%23435340' stroke-width='4' stroke-linecap='round'/></svg>">
+  <title>Weekly Table & Kitchen Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-warm: #FAF8F5;
+      --surface: #FFFFFF;
+      --surface-subtle: #F4F0E8;
+      --border: #E8E2D5;
+      --border-focus: #435340;
+      
+      --text-main: #242220;
+      --text-muted: #6E6860;
+      --text-faint: #9E968C;
+
+      --olive: #435340;
+      --olive-light: #EFF3EE;
+      --olive-dark: #2F3B2D;
+
+      --terracotta: #B45B38;
+      --terracotta-light: #FAF0EB;
+
+      --gold: #A37A3E;
+      --gold-light: #FBF6ED;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(36, 34, 32, 0.04);
+      --shadow-md: 0 4px 14px rgba(36, 34, 32, 0.05);
+      --shadow-lg: 0 10px 28px rgba(36, 34, 32, 0.07);
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-warm);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      padding-bottom: 90px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 44px 0 24px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--surface);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      text-wrap: balance;
+    }
+
+    .brand-subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .stats-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      background: var(--surface-subtle);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .pill.olive {
+      background: var(--olive-light);
+      color: var(--olive-dark);
+      border-color: #D6E0D4;
+    }
+
+    .pill.terracotta {
+      background: var(--terracotta-light);
+      color: var(--terracotta);
+      border-color: #F0D9CF;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid transparent;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tab {
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 12px 18px;
+      cursor: pointer;
+      position: relative;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-tab:hover {
+      color: var(--text-main);
+    }
+
+    .nav-tab.active {
+      color: var(--olive);
+      font-weight: 600;
+    }
+
+    .nav-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--olive);
+    }
+
+    /* Content Area */
+    main {
+      padding: 32px 0;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section Headings */
+    .section-header {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .section-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Container Box / Meal Selector */
+    .container-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .container-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container-label {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .container-meta {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Option Cards Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .option-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      background: var(--bg-warm);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .option-card:hover {
+      border-color: #C8BFB2;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .option-card.selected {
+      background: var(--surface);
+      border-color: var(--olive);
+      box-shadow: 0 0 0 1px var(--olive), var(--shadow-md);
+    }
+
+    .option-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .option-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .check-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      margin-top: 2px;
+    }
+
+    .option-card.selected .check-circle {
+      background-color: var(--olive);
+      border-color: var(--olive);
+    }
+
+    .check-circle svg {
+      opacity: 0;
+      width: 10px;
+      height: 10px;
+      stroke: white;
+      stroke-width: 3;
+    }
+
+    .option-card.selected .check-circle svg {
+      opacity: 1;
+    }
+
+    .option-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 8px 0;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.02em;
+    }
+
+    .badge.special {
+      background: var(--terracotta-light);
+      color: var(--terracotta);
+    }
+
+    .badge.prep {
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+    }
+
+    .badge.clinical {
+      background: var(--olive-light);
+      color: var(--olive-dark);
+    }
+
+    .option-macros {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Weekly Calendar Spread & Table */
+    .calendar-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .calendar-ribbon {
+      background: var(--surface-subtle);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ribbon-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ribbon-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .ribbon-stat-item strong {
+      color: var(--olive);
+      font-weight: 600;
+    }
+
+    .view-toggle {
+      display: inline-flex;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .view-toggle-btn {
+      border: none;
+      background: none;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .view-toggle-btn.active {
+      background: var(--surface);
+      color: var(--text-main);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* 7-Day Calendar Grid */
+    .calendar-grid-7 {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      background: var(--border);
+      gap: 1px;
+    }
+
+    @media (max-width: 1024px) {
+      .calendar-grid-7 {
+        grid-template-columns: repeat(7, minmax(145px, 1fr));
+      }
+    }
+
+    .calendar-col {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+      transition: background 0.15s ease;
+    }
+
+    .calendar-col.is-cook-day {
+      background: #FAF8F2;
+    }
+
+    .col-header {
+      padding: 12px 10px 10px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      background: var(--surface);
+    }
+
+    .calendar-col.is-cook-day .col-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--olive);
+    }
+
+    .col-day-short {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 2px;
+    }
+
+    .col-day-full {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .col-status-badge {
+      margin-top: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .col-status-badge.cook {
+      background: var(--olive-light);
+      color: var(--olive-dark);
+      border: 1px solid #D6E0D4;
+    }
+
+    .col-status-badge.reheat {
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      border: 1px solid #E2DBD0;
+    }
+
+    .col-status-badge.prep {
+      background: var(--gold-light);
+      color: var(--gold);
+      border: 1px solid #EEDFCA;
+    }
+
+    .col-body {
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+    }
+
+    .calendar-event {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 9px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+      flex-grow: 1;
+    }
+
+    .calendar-event:hover {
+      border-color: #C8BFB2;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .calendar-event.lunch {
+      border-left: 3px solid var(--olive);
+    }
+
+    .calendar-event.dinner {
+      border-left: 3px solid var(--terracotta);
+    }
+
+    .event-tag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .event-tag {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .event-tag.lunch { color: var(--olive); }
+    .event-tag.dinner { color: var(--terracotta); }
+
+    .event-portion {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: var(--surface-subtle);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    .event-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .event-action {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .col-footer-tip {
+      padding: 8px 10px;
+      border-top: 1px dashed var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--surface-subtle);
+      line-height: 1.35;
+    }
+
+    /* Planner Table View */
+    .calendar-table-wrap {
+      display: none;
+      overflow-x: auto;
+    }
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .calendar-table th {
+      background: var(--surface-subtle);
+      text-align: left;
+      padding: 12px 16px;
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .calendar-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--surface-subtle);
+      vertical-align: top;
+    }
+
+    .calendar-table tr:hover td {
+      background: #FCFAF6;
+    }
+
+    .table-day-cell {
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .table-meal-title {
+      font-weight: 600;
+      color: var(--text-main);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .table-meal-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Shopping List Component */
+    .shopping-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-bar-wrap {
+      margin-bottom: 24px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: var(--surface-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--olive);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .aisle-section {
+      margin-bottom: 28px;
+    }
+
+    .aisle-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .aisle-title .count {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .item-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 8px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+
+    .checklist-item:hover {
+      background: #F4EFE6;
+    }
+
+    .checklist-item.checked {
+      background: var(--surface-subtle);
+      border-color: #E2DBD0;
+      opacity: 0.65;
+    }
+
+    .checklist-item.checked .item-text {
+      text-decoration: line-through;
+      color: var(--text-faint);
+    }
+
+    .custom-checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border);
+      background: white;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .checklist-item.checked .custom-checkbox {
+      background: var(--olive);
+      border-color: var(--olive);
+    }
+
+    .custom-checkbox svg {
+      width: 11px;
+      height: 11px;
+      stroke: white;
+      stroke-width: 2.5;
+      display: none;
+    }
+
+    .checklist-item.checked .custom-checkbox svg {
+      display: block;
+    }
+
+    .item-text {
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .item-unit-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .unit-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .unit-badge.woolies {
+      background: #E8F2E6;
+      color: #2F6627;
+      border: 1px solid #C8E0C4;
+    }
+
+    .unit-badge.coles {
+      background: #FDF0EE;
+      color: #B22B27;
+      border: 1px solid #F6D0CC;
+    }
+
+    .unit-badge.tie {
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      border: 1px solid #E2DBD0;
+    }
+
+    .store-filter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .store-filter-btn {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .store-filter-btn:hover {
+      background: var(--surface-subtle);
+      color: var(--text-main);
+    }
+
+    .store-filter-btn.active {
+      background: var(--olive);
+      color: white;
+      border-color: var(--olive);
+    }
+
+    .store-filter-btn.woolies.active {
+      background: #2F6627;
+      border-color: #2F6627;
+    }
+
+    .store-filter-btn.coles.active {
+      background: #B22B27;
+      border-color: #B22B27;
+    }
+
+    .basket-summary-card {
+      background: #FAF7F2;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .basket-summary-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .basket-summary-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-faint);
+      margin-bottom: 2px;
+    }
+
+    .basket-summary-value {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .basket-summary-sub {
+      font-size: 11.5px;
+      color: var(--olive);
+      font-weight: 600;
+    }
+
+    /* Specials Banner Card */
+    .specials-alert-card {
+      background: var(--surface);
+      border: 1px solid #F0D9CF;
+      border-left: 4px solid var(--terracotta);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+
+    .specials-alert-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .specials-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    /* Recipe Step Cards */
+    .recipe-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .recipe-title {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .recipe-meta-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .recipe-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .recipe-grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ingredients-col h4,
+    .method-col h4 {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .ingredient-bullet-list {
+      list-style: none;
+    }
+
+    .ingredient-bullet-list li {
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--surface-subtle);
+      color: var(--text-main);
+    }
+
+    .method-step-list {
+      list-style: none;
+      counter-reset: step-counter;
+    }
+
+    .method-step-list li {
+      font-size: 13.5px;
+      line-height: 1.5;
+      padding: 8px 0 8px 30px;
+      position: relative;
+      color: var(--text-main);
+    }
+
+    .method-step-list li::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--surface-subtle);
+      color: var(--olive);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Sunday Bake Walkthrough */
+    .walkthrough-step {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .step-number {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--olive);
+      line-height: 1;
+      width: 32px;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Action bar / sticky buttons */
+    .action-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-main);
+    }
+
+    .btn:hover {
+      background: var(--surface-subtle);
+    }
+
+    .btn.primary {
+      background: var(--olive);
+      color: white;
+      border-color: var(--olive);
+    }
+
+    .btn.primary:hover {
+      background: var(--olive-dark);
+    }
+
+    /* Print styling */
+    @media print {
+      body { background: white; padding: 0; font-size: 12pt; }
+      header, .nav-tabs, .action-row, .progress-bar-wrap { display: none !important; }
+      .container { max-width: 100%; padding: 0; }
+      .tab-pane { display: block !important; }
+      .container-card, .shopping-container, .recipe-card {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin-bottom: 30px;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-top">
+        <div>
+          <h1 class="brand-title">Table & Pantry</h1>
+          <p class="brand-subtitle">High-protein Mediterranean kitchen journal • Anti-inflammatory & supermarket synced</p>
+        </div>
+        <div class="stats-pills">
+          <span class="pill olive">44g+ Protein / Meal</span>
+          <span class="pill">8-Min Sunday Prep</span>
+          <span class="pill terracotta">Coles & Woolies Specials Synced</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs" role="tablist">
+        <button class="nav-tab active" onclick="switchTab('plan', this)">Plan & Choose Meals</button>
+        <button class="nav-tab" onclick="switchTab('schedule', this)">Weekly Schedule</button>
+        <button class="nav-tab" onclick="switchTab('shopping', this)">Supermarket Checklist</button>
+        <button class="nav-tab" onclick="switchTab('prep', this)">Sunday Glass-Bake Guide</button>
+        <button class="nav-tab" onclick="switchTab('recipes', this)">Full Recipe Journal</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="container">
+
+    <!-- TAB 1: PLAN & CHOOSE MEALS -->
+    <section id="tab-plan" class="tab-pane active">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Select Your 4 Weekly Meals</h2>
+          <p class="section-desc">Tap any variation to customize your week. The shopping list and schedule update automatically.</p>
+        </div>
+        <div class="action-row">
+          <button class="btn" onclick="resetToRecommendations()">Reset to Best Specials</button>
+        </div>
+      </div>
+
+      <!-- Container 1: Lunch Glass Bakes -->
+      <div class="container-card">
+        <div class="container-header">
+          <div>
+            <h3 class="container-label">Container 1: Mon–Thu Batch Lunches</h3>
+            <span class="container-meta">Direct-in-Glass-Container Oven Bake • 4 Servings • Zero Pots or Pans</span>
+          </div>
+          <span class="badge clinical">Focus: Enterohepatic Binding</span>
+        </div>
+        <div class="options-grid" id="container-1-options"></div>
+      </div>
+
+      <!-- Container 2: Mon–Wed Stews -->
+      <div class="container-card">
+        <div class="container-header">
+          <div>
+            <h3 class="container-label">Container 2: Mon–Wed Dinner Stew</h3>
+            <span class="container-meta">One-Pot Braise • 6 Servings (2 people x 3 nights) • Deepens over 72h</span>
+          </div>
+          <span class="badge clinical">Focus: Lycopene & Soluble Fiber</span>
+        </div>
+        <div class="options-grid" id="container-2-options"></div>
+      </div>
+
+      <!-- Container 3: Thu–Fri Fish -->
+      <div class="container-card">
+        <div class="container-header">
+          <div>
+            <h3 class="container-label">Container 3: Thu–Fri Seafood & Brassica</h3>
+            <span class="container-meta">Oily Fish & Warm Lentils • 4 Servings (2 people x 2 nights)</span>
+          </div>
+          <span class="badge clinical">Focus: Marine EPA/DHA + DIM</span>
+        </div>
+        <div class="options-grid" id="container-3-options"></div>
+      </div>
+
+      <!-- Container 4: Sat–Sun Wraps -->
+      <div class="container-card">
+        <div class="container-header">
+          <div>
+            <h3 class="container-label">Container 4: Sat–Sun Fast Grill & Wraps</h3>
+            <span class="container-meta">15-min Saturday Grill • Instant Sunday Assembly • 4 Servings</span>
+          </div>
+          <span class="badge clinical">Focus: A2 Fermented Greek Yogurt</span>
+        </div>
+        <div class="options-grid" id="container-4-options"></div>
+      </div>
+    </section>
+
+    <!-- TAB 2: WEEKLY SCHEDULE -->
+    <section id="tab-schedule" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Weekly Calendar</h2>
+          <p class="section-desc">At-a-glance rhythm: only 3 dinner cooking sessions + 1 Sunday prep sprint. All other days are reheat or instant assembly.</p>
+        </div>
+        <div class="view-toggle">
+          <button class="view-toggle-btn active" id="btn-view-grid" onclick="setCalendarView('grid')">7-Day Calendar</button>
+          <button class="view-toggle-btn" id="btn-view-table" onclick="setCalendarView('table')">Planner Table</button>
+        </div>
+      </div>
+
+      <!-- Calendar Container -->
+      <div class="calendar-wrapper">
+        <!-- Kitchen Rhythm Ribbon -->
+        <div class="calendar-ribbon">
+          <div class="ribbon-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Weekly Kitchen Rhythm
+          </div>
+          <div class="ribbon-stats">
+            <span class="ribbon-stat-item">Cook Nights: <strong>Mon, Thu, Sat</strong></span>
+            <span class="ribbon-stat-item">Prep Sprint: <strong>Sunday (10m Glass-Bake)</strong></span>
+            <span class="ribbon-stat-item">Off / Reheat Nights: <strong>Tue, Wed, Fri, Sun</strong></span>
+          </div>
+        </div>
+
+        <!-- 7-Column Calendar Grid View -->
+        <div class="calendar-grid-7" id="calendar-grid-7"></div>
+
+        <!-- Table View -->
+        <div class="calendar-table-wrap" id="calendar-table-wrap">
+          <table class="calendar-table">
+            <thead>
+              <tr>
+                <th style="width: 140px;">Day</th>
+                <th style="width: 140px;">Kitchen Action</th>
+                <th>Lunch (Prepped)</th>
+                <th>Dinner</th>
+                <th style="width: 200px;">Reheat & Portion Tip</th>
+              </tr>
+            </thead>
+            <tbody id="calendar-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: SHOPPING CHECKLIST -->
+    <section id="tab-shopping" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Consolidated Supermarket Checklist</h2>
+          <p class="section-desc">Quantities merged across your selected dishes. Tap to cross off items in the store.</p>
+        </div>
+        <div class="action-row">
+          <button class="btn" onclick="copyShoppingList()">Copy List to Notes</button>
+          <button class="btn" onclick="clearChecks()">Uncheck All</button>
+        </div>
+      </div>
+
+      <!-- Active Supermarket Specials Highlight -->
+      <div class="specials-alert-card">
+        <div class="specials-alert-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          Active 40–50% Off Stockpile Deals This Week
+        </div>
+        <div class="specials-list" id="specials-list"></div>
+      </div>
+
+      <!-- Basket Summary Card -->
+      <div class="basket-summary-card">
+        <div class="basket-summary-col">
+          <span class="basket-summary-label">Estimated Food Basket</span>
+          <span class="basket-summary-value">$121.40</span>
+          <span class="basket-summary-sub">20 Servings • $6.07 per meal</span>
+        </div>
+        <div class="basket-summary-col">
+          <span class="basket-summary-label">Optimal Split Strategy</span>
+          <span class="basket-summary-value">Woolworths + Coles</span>
+          <span class="basket-summary-sub">Save $52.70 vs. unoptimized full shop</span>
+        </div>
+        <div class="basket-summary-col">
+          <span class="basket-summary-label">Unit Cost Optimization</span>
+          <span class="basket-summary-value">Lowest $/kg Target</span>
+          <span class="basket-summary-sub">Bulk trays, Odd Bunch & 907g tubs</span>
+        </div>
+      </div>
+
+      <div class="shopping-container">
+        <!-- Store Filter Bar -->
+        <div class="store-filter-bar">
+          <button class="store-filter-btn active" id="filter-all" onclick="filterShoppingStore('all', this)">All Items</button>
+          <button class="store-filter-btn woolies" id="filter-woolies" onclick="filterShoppingStore('Woolies', this)">Woolworths Best Unit Cost</button>
+          <button class="store-filter-btn coles" id="filter-coles" onclick="filterShoppingStore('Coles', this)">Coles Best Unit Cost</button>
+          <button class="store-filter-btn" id="filter-tie" onclick="filterShoppingStore('Tie', this)">Price Parity / Ties</button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-wrap">
+          <div class="progress-header">
+            <span>Shopping Progress</span>
+            <span id="progress-text">0 of 0 items checked</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+
+        <div id="shopping-aisles"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: SUNDAY PREP GUIDE -->
+    <section id="tab-prep" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">The 8-Minute Sunday Glass-Bake Flow</h2>
+          <p class="section-desc">Zero pots, zero frying pans, zero oil splatter. Raw ingredients go directly into your oven-safe glass meal prep containers.</p>
+        </div>
+      </div>
+
+      <div class="walkthrough-step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h4>Line Up Your 4 Glass Containers</h4>
+          <p>Place 4 oven-safe glass containers on a baking tray. Divide 1/4 cup raw jasmine rice (or dry quinoa) and 1/3 cup rinsed legumes (chickpeas or black beans) into each container. Add chopped tomatoes, mushrooms, or peppers.</p>
+        </div>
+      </div>
+
+      <div class="walkthrough-step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h4>Place Raw Chicken Cutlets on Top</h4>
+          <p>Lay one raw 175g chicken breast cutlet directly on top of the grain bed in each container. Grains at the bottom; chicken resting above.</p>
+        </div>
+      </div>
+
+      <div class="walkthrough-step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h4>Pour Boiling Seasoned Bone Broth</h4>
+          <p>In a kettle or small jug, mix 500ml boiling chicken bone broth with lemon juice, garlic, extra virgin olive oil, and herbs. Pour 1/2 cup of hot broth into each container over the chicken and grains.</p>
+        </div>
+      </div>
+
+      <div class="walkthrough-step">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <h4>Seal Tightly with Foil & Bake (35 Mins)</h4>
+          <p>Crimp a sheet of aluminum foil tightly over the tops of the containers. Bake at 180°C fan-forced for 35 minutes. The boiling broth under the foil creates a sealed steam pocket, cooking the rice perfectly fluffy and keeping the lean chicken tender and juicy.</p>
+        </div>
+      </div>
+
+      <div class="walkthrough-step">
+        <div class="step-number">05</div>
+        <div class="step-content">
+          <h4>Uncover & Crisp (10 Mins)</h4>
+          <p>Remove the foil and bake for a final 10 minutes until chicken is golden, cooked through to 74°C, and all liquid is absorbed.</p>
+        </div>
+      </div>
+
+      <div class="walkthrough-step">
+        <div class="step-number">06</div>
+        <div class="step-content">
+          <h4>Snap on Lids & Refrigerate</h4>
+          <p>Cool for 15 minutes, snap on airtight container lids, and store in the fridge. 4 high-protein lunches ready for Monday through Thursday. Zero pots or pans to wash.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: RECIPE JOURNAL -->
+    <section id="tab-recipes" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Current Recipe Cards</h2>
+          <p class="section-desc">Full culinary directions, exact ingredient measurements, and macro breakdowns for this week's 4 chosen meals.</p>
+        </div>
+      </div>
+      <div id="recipe-cards-container"></div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // STATE & MASTER DATA (Synchronised with Receipt Intelligence & Supermarkets)
+    // =========================================================================
+
+    const CATALOG = {
+      container_1: {
+        name: "Container 1: Mon–Thu Batch Lunches",
+        profile: "Direct-in-Glass-Container Oven Bake (4 Servings)",
+        options: [
+          {
+            id: "c1_opt1",
+            title: "Greek Lemon-Oregano Chicken, Chickpea & Rice Glass Bake",
+            cuisine: "Greek / Mediterranean",
+            protein: "46g Protein",
+            carbs: "40g Carbs (8g Fiber)",
+            fat: "12g Fat",
+            cals: "460 kcal",
+            special: "Coles/Woolies Specials Synced",
+            prep: "Zero Pots / Pans",
+            clinical: "Enterohepatic Estrogen Clearance",
+            ingredients: [
+              "700g Woolworths/Coles RSPCA Chicken Breast Fillets (divided into 4 x 175g portions)",
+              "1 cup raw white jasmine rice (1/4 cup per glass container)",
+              "1 tin (400g) chickpeas (rinsed & drained, 1/3 cup per container)",
+              "1 punnet (250g) cherry or Sweet Solanato tomatoes (halved)",
+              "2 Lebanese cucumbers (diced, served fresh on side)",
+              "1/3 cup pitted kalamata olives (halved)",
+              "500ml chicken bone broth",
+              "1 lemon (juiced & zested) + 4 cloves garlic (minced)",
+              "1 tbsp extra virgin olive oil, 1.5 tbsp Greek oregano, 1/2 tsp turmeric, sea salt"
+            ],
+            method: [
+              "Line up 4 oven-safe glass meal prep containers. Add 1/4 cup raw jasmine rice, 1/3 cup chickpeas, and halved cherry tomatoes to the bottom of each container.",
+              "Bring 500ml chicken bone broth to a boil. Whisk in lemon juice, minced garlic, 1 tbsp olive oil, 1 tbsp Greek oregano, 1/2 tsp turmeric, salt, and pepper.",
+              "Place 175g raw chicken breast directly on top of the grains in each container. Pour 1/2 cup hot seasoned broth evenly into each container.",
+              "Cover the tops tightly with aluminum foil. Bake at 180°C fan-forced for 35 minutes.",
+              "Remove foil and bake for another 10 minutes until chicken is golden, cooked through (74°C), and broth is completely absorbed into the rice.",
+              "Scatter kalamata olives on top, cool 15 minutes, snap on lids, and refrigerate."
+            ]
+          },
+          {
+            id: "c1_opt2",
+            title: "Smoky Chipotle Chicken, Black Bean & Rice Glass Bake",
+            cuisine: "Smoky Spanish / Fiesta",
+            protein: "45g Protein",
+            carbs: "42g Carbs (10g Fiber)",
+            fat: "11g Fat",
+            cals: "450 kcal",
+            special: "Simson's Wraps / Corn Deals",
+            prep: "Zero Pots / Pans",
+            clinical: "Phase II Hepatic Support",
+            ingredients: [
+              "700g Woolworths/Coles RSPCA Chicken Breast Fillets (4 x 175g portions)",
+              "1 cup raw white jasmine or brown rice (1/4 cup per container)",
+              "1 tin (400g) black beans (rinsed & drained, 1/3 cup per container)",
+              "2 red capsicums (diced) + 1 small tin sweet corn",
+              "2 fresh limes + 1 bunch fresh coriander",
+              "500ml chicken bone broth",
+              "Smoked paprika, ground cumin, chipotle powder, olive oil, sea salt"
+            ],
+            method: [
+              "Line up 4 oven-safe glass containers. Divide rice, black beans, diced capsicum, and sweet corn evenly.",
+              "Season raw chicken breasts with 1 tsp smoked paprika, 1 tsp cumin, 1/2 tsp chipotle powder, and salt. Place on top in each container.",
+              "Bring 500ml chicken bone broth to a boil with lime juice. Pour 1/2 cup boiling broth into each container.",
+              "Cover tightly with foil; bake at 180°C for 35 minutes.",
+              "Uncover and bake 10 minutes until chicken is golden and liquid is absorbed.",
+              "Garnish with coriander, cool, snap on lids, and refrigerate."
+            ]
+          },
+          {
+            id: "c1_opt3",
+            title: "Tuscan Herb Chicken, Mushroom & Cannellini Glass Bake",
+            cuisine: "Italian Tuscan",
+            protein: "45g Protein",
+            carbs: "36g Carbs (9g Fiber)",
+            fat: "12g Fat",
+            cals: "440 kcal",
+            special: "Mushroom Cups 14x in Receipts",
+            prep: "Zero Pots / Pans",
+            clinical: "Gut Biome Prebiotics",
+            ingredients: [
+              "700g Woolworths/Coles RSPCA Chicken Breast Fillets (4 x 175g portions)",
+              "1 cup raw white jasmine rice (1/4 cup per container)",
+              "1 tin (400g) cannellini beans (rinsed & drained, 1/3 cup per container)",
+              "300g mushroom cups (sliced) + 1 medium zucchini (diced)",
+              "1/2 cup Italian passata / crushed tomatoes",
+              "500ml chicken bone broth",
+              "Dried rosemary, dried oregano, garlic, extra virgin olive oil, sea salt"
+            ],
+            method: [
+              "Divide raw rice, cannellini beans, sliced mushrooms, and zucchini across 4 glass containers.",
+              "Place 175g seasoned raw chicken breast on top in each container.",
+              "Boil bone broth with tomato passata, minced garlic, rosemary, and oregano. Pour 1/2 cup hot broth into each container.",
+              "Cover tightly with foil and bake at 180°C for 35 minutes.",
+              "Uncover and bake 10 minutes until chicken is lightly browned and rice is tender.",
+              "Drizzle with cold extra virgin olive oil before refrigerating."
+            ]
+          }
+        ]
+      },
+      container_2: {
+        name: "Container 2: Mon–Wed Dinner Stew",
+        profile: "One-Pot Braise (6 Servings: 2 people x 3 nights)",
+        options: [
+          {
+            id: "c2_opt1",
+            title: "Mediterranean Turkey & Cannellini Bean Cacciatore",
+            cuisine: "Italian Tuscan",
+            protein: "43g Protein",
+            carbs: "32g Carbs (9g Fiber)",
+            fat: "13g Fat",
+            cals: "430 kcal",
+            special: "Ingham's Turkey Mince on Special",
+            prep: "One-Pot Dutch Oven",
+            clinical: "Lycopene & Soluble Fiber",
+            ingredients: [
+              "800g Inghams Turkey Breast Mince (or chicken thigh)",
+              "2 tins (400g) cannellini beans (rinsed & drained)",
+              "2 tins (400g) diced Italian tomatoes or Mutti passata",
+              "2 medium green zucchinis (Odd Bunch, sliced)",
+              "300g mushroom cups (quartered)",
+              "1 large red capsicum (sliced) + 1 brown onion (diced) + 5 cloves garlic",
+              "2 tbsp capers + 1/3 cup kalamata olives + fresh rosemary & oregano",
+              "1 cup chicken bone broth, extra virgin olive oil, sea salt, black pepper"
+            ],
+            method: [
+              "In a large Dutch oven, heat 1 tbsp olive oil. Brown turkey mince 5 mins, transfer to plate.",
+              "Add onion, capsicum, mushrooms; sauté 5 mins until soft. Stir in garlic and herbs 1 min.",
+              "Pour in diced tomatoes, cannellini beans, capers, olives, bone broth, and turkey with resting juices.",
+              "Simmer gently covered for 20 mins. Add zucchini half-moons and simmer uncovered 8 mins until tender.",
+              "Serve 2 portions Monday; store remaining 4 portions in glass containers for Tuesday & Wednesday."
+            ]
+          },
+          {
+            id: "c2_opt2",
+            title: "Moroccan Turkey & Chickpea Tagine with Sweet Potato",
+            cuisine: "North African / Moroccan",
+            protein: "44g Protein",
+            carbs: "36g Carbs (10g Fiber)",
+            fat: "14g Fat",
+            cals: "450 kcal",
+            special: "Chickpeas & Sweet Potato Staple",
+            prep: "One-Pot Slow Braise",
+            clinical: "Beta-Carotene & Estrogen Binding",
+            ingredients: [
+              "800g Inghams Turkey Mince or diced Chicken Thighs",
+              "2 tins (400g) chickpeas (rinsed & drained)",
+              "2 tins (400g) crushed Italian tomatoes",
+              "1 medium sweet potato (cubed) + 2 zucchinis + 2 carrots",
+              "1/3 cup green Sicilian olives + fresh coriander",
+              "1 tbsp cumin, 1 tsp cinnamon, 1 tsp turmeric, 1L bone broth"
+            ],
+            method: [
+              "Brown turkey or chicken in Dutch oven with 1 tbsp olive oil; remove to plate.",
+              "Sauté onion, carrots, and sweet potato 5 mins. Stir in cumin, cinnamon, turmeric, and garlic 1 min.",
+              "Pour in crushed tomatoes, bone broth, chickpeas, green olives, and meat. Simmer covered 25 mins.",
+              "Add zucchini half-moons; simmer uncovered 8 mins until sweet potato is fork-tender.",
+              "Garnish with fresh coriander and lemon juice. Serves Mon, Tue, Wed."
+            ]
+          },
+          {
+            id: "c2_opt3",
+            title: "French Provençal Chicken & White Butter Bean Stew",
+            cuisine: "French Provençal",
+            protein: "42g Protein",
+            carbs: "30g Carbs (9g Fiber)",
+            fat: "14g Fat",
+            cals: "420 kcal",
+            special: "RSPCA Chicken Breast Fillets",
+            prep: "One-Pot Braise",
+            clinical: "Fennel & Leek Prebiotics",
+            ingredients: [
+              "800g RSPCA Chicken Thigh or Breast (cut into chunks)",
+              "2 tins (400g) butter beans or cannellini beans",
+              "2 leeks (sliced) + 2 zucchinis + 2 celery stalks",
+              "2 tbsp Dijon mustard + 1/2 cup pitted olives + fresh thyme",
+              "1L chicken bone broth, olive oil, lemon juice, sea salt"
+            ],
+            method: [
+              "Sear chicken chunks in Dutch oven with olive oil and thyme (6 mins). Set aside.",
+              "Sauté leeks and celery 6 mins until sweet and tender. Add garlic and thyme 1 min.",
+              "Stir in Dijon mustard, chicken bone broth, butter beans, olives, and chicken.",
+              "Simmer covered 20 mins. Add zucchini; simmer uncovered 8 mins.",
+              "Stir in fresh lemon juice. Reheats beautifully across 3 days."
+            ]
+          }
+        ]
+      },
+      container_3: {
+        name: "Container 3: Thu–Fri Seafood & Brassica",
+        profile: "Oily Fish & Warm Lentils (4 Servings: 2 people x 2 nights)",
+        options: [
+          {
+            id: "c3_opt1",
+            title: "Tasmanian Salmon & Turmeric Lentils with Charred Broccolini",
+            cuisine: "Tasmanian Coastal",
+            protein: "45g Protein",
+            carbs: "30g Carbs (10g Fiber)",
+            fat: "22g Fat",
+            cals: "510 kcal",
+            special: "Woolies Tasmanian Salmon on Special",
+            prep: "Sheet Pan + Skillet",
+            clinical: "High Marine EPA/DHA + Cruciferous DIM",
+            ingredients: [
+              "4 x 160g Tasmanian Salmon Fillets (skin-on)",
+              "2 bunches broccolini (trimmed)",
+              "1.5 cups dry brown lentils (or 2 tins)",
+              "2 carrots + 2 celery stalks + 1 onion + fresh ginger & turmeric",
+              "1 lemon + 1 Hass avocado + extra virgin olive oil, 750ml broth"
+            ],
+            method: [
+              "Lentils: Sauté onion, carrots, celery in 1 tbsp olive oil 6 mins. Add garlic, ginger, turmeric. Add lentils and broth; simmer covered 25 mins until tender. Stir in lemon juice.",
+              "Broccolini: Toss with 1 tbsp olive oil and salt. Roast at 210°C for 12 mins until charred and tender.",
+              "Salmon: Pan-sear skin-down in hot skillet 4 mins until crisp; flip and cook 2 mins.",
+              "Plate 2 portions Thursday with avocado. Pack 2 for Friday (reheat lentils hot; warm salmon gently at 50% power for 60s)."
+            ]
+          },
+          {
+            id: "c3_opt2",
+            title: "Barramundi with Garlic Cannellini & Mediterranean Salsa",
+            cuisine: "Australian Coastal",
+            protein: "44g Protein",
+            carbs: "28g Carbs (9g Fiber)",
+            fat: "16g Fat",
+            cals: "430 kcal",
+            special: "Cone Bay Barramundi Fillets",
+            prep: "Quick Skillet & Roast",
+            clinical: "Oleocanthal & Clean Marine Protein",
+            ingredients: [
+              "4 x 180g Australian Barramundi Fillets (skin-on)",
+              "2 tins (400g) cannellini beans",
+              "1 bunch asparagus OR 300g Brussels sprouts (or broccolini)",
+              "1 punnet cherry tomatoes + 1/2 red onion + fresh parsley + capers",
+              "1 lemon + 1 Hass avocado + extra virgin olive oil, garlic"
+            ],
+            method: [
+              "Salsa: Toss diced cherry tomatoes, red onion, capers, parsley, lemon zest, and olive oil.",
+              "Beans: Sauté minced garlic in olive oil 1 min. Add cannellini beans and 3 tbsp water; warm 4 mins and crush lightly.",
+              "Vegetables: Toss asparagus or Brussels sprouts with olive oil; roast at 200°C for 12 mins.",
+              "Barramundi: Score skin, season with salt. Pan-sear skin-down 4 mins until crispy, flip 2 mins.",
+              "Plate fish over warm cannellini beans and top with Mediterranean salsa."
+            ]
+          },
+          {
+            id: "c3_opt3",
+            title: "Tamari-Ginger Glazed Salmon with Edamame Lentils & Bok Choy",
+            cuisine: "East-Asian Anti-Inflammatory",
+            protein: "46g Protein",
+            carbs: "26g Carbs (8g Fiber)",
+            fat: "20g Fat",
+            cals: "480 kcal",
+            special: "Tasmanian Salmon 4-Pack",
+            prep: "Skillet & Mash",
+            clinical: "Gingerol & Marine Omega-3",
+            ingredients: [
+              "4 x 160g Tasmanian Salmon Fillets",
+              "2 bunches baby bok choy or choy sum (halved)",
+              "1.5 cups brown lentils + 200g frozen edamame beans",
+              "3 cm fresh ginger + 3 cloves garlic + spring onions",
+              "Gluten-free tamari, toasted sesame oil, sesame seeds"
+            ],
+            method: [
+              "Mash: Simmer lentils and edamame with garlic and broth 15 mins; crush coarsely with 1 tsp sesame oil and salt.",
+              "Bok Choy: Flash-fry bok choy in hot skillet with 1 tsp oil and splash of water 3 mins until bright green.",
+              "Salmon: Whisk tamari, ginger, garlic. Brush onto salmon fillets. Pan-sear 3-4 mins per side, glazing frequently.",
+              "Serve glazed salmon over edamame lentil mash with bok choy."
+            ]
+          }
+        ]
+      },
+      container_4: {
+        name: "Container 4: Sat–Sun Fast Grill & Wraps",
+        profile: "15-min Saturday Grill + Instant Sunday Assembly (4 Servings)",
+        options: [
+          {
+            id: "c4_opt1",
+            title: "Grilled Chicken Souvlaki Wraps with Chobani Dill Tzatziki",
+            cuisine: "Greek Souvlaki",
+            protein: "44g Protein",
+            carbs: "32g Carbs (8g Fiber)",
+            fat: "14g Fat",
+            cals: "430 kcal",
+            special: "Chobani 907g & Lower-Carb Wraps Deals",
+            prep: "15-min Fast Grill",
+            clinical: "A2 Protein Fermented Dairy",
+            ingredients: [
+              "700g RSPCA Chicken Breast (sliced into strips)",
+              "8 x Woolworths Lower Carb Wholemeal Wraps",
+              "1 cup Chobani Plain Non-Fat Greek Yogurt",
+              "1 Lebanese cucumber (grated & squeezed dry) + 1 clove garlic + fresh dill",
+              "1 punnet cherry tomatoes + 1/2 red onion + lettuce + 1 avocado",
+              "Dried oregano, garlic powder, paprika, extra virgin olive oil, lemon"
+            ],
+            method: [
+              "Tzatziki: Mix Chobani Greek yogurt, squeezed cucumber, garlic, lemon juice, salt, and dill.",
+              "Grill: Toss chicken with olive oil, oregano, garlic powder, paprika, salt. Pan-sear high heat 6-8 mins until charred.",
+              "Saturday Dinner: Warm 4 wraps. Fill with lettuce, tomatoes, onion, avocado, grilled chicken, and 2 tbsp tzatziki.",
+              "Sunday Dinner: Leftover grilled chicken and tzatziki assemble into fresh wraps in 3 mins with zero cooking."
+            ]
+          },
+          {
+            id: "c4_opt2",
+            title: "Skillet Australian Tiger Prawn Wraps with Purple Cabbage Slaw",
+            cuisine: "Coastal Baja / Mexican",
+            protein: "42g Protein",
+            carbs: "30g Carbs (9g Fiber)",
+            fat: "12g Fat",
+            cals: "400 kcal",
+            special: "Wild Prawns & Purple Cabbage",
+            prep: "8-min Flash Sear",
+            clinical: "Astaxanthin Antioxidants",
+            ingredients: [
+              "600g raw peeled Australian Tiger Prawns",
+              "8 x Lower Carb Wholemeal Wraps",
+              "1/4 head purple cabbage (finely shredded) + 1 grated carrot",
+              "1 fresh lime + fresh coriander + 1 avocado",
+              "1 cup Chobani Greek Yogurt + smoked paprika + cumin + garlic"
+            ],
+            method: [
+              "Slaw: Toss shredded purple cabbage, carrot, coriander, lime juice, and salt.",
+              "Lime Crema: Whisk Chobani yogurt with lime juice, garlic, and pinch of salt.",
+              "Prawns: Season prawns with olive oil, paprika, cumin, garlic, and salt. Flash-fry in blazing hot skillet 2-3 mins until pink.",
+              "Assemble Saturday: Fill warm wraps with slaw, avocado, sizzling prawns, and lime crema.",
+              "Sunday: Store cooked prawns and slaw separately. Assemble cold or gently warmed in 3 mins."
+            ]
+          },
+          {
+            id: "c4_opt3",
+            title: "Spiced Turkey/Beef Kofta Wraps with Minted Chobani Tahini",
+            cuisine: "Middle Eastern Kofta",
+            protein: "45g Protein",
+            carbs: "31g Carbs (8g Fiber)",
+            fat: "15g Fat",
+            cals: "440 kcal",
+            special: "Ingham's Turkey Mince Deal",
+            prep: "12-min Skillet Cook",
+            clinical: "Sesame Lignans & Herbs",
+            ingredients: [
+              "700g Inghams Turkey Mince or Lean Grass-Fed Beef Mince",
+              "8 x Lower Carb Wholemeal Wraps",
+              "1 cup Chobani Plain Greek Yogurt + 2 tbsp hulled tahini + fresh mint",
+              "1 Lebanese cucumber + 1 punnet cherry tomatoes + 1 red onion + avocado",
+              "1 tbsp cumin, 1 tbsp coriander, 1/2 tsp cinnamon, garlic powder, olive oil"
+            ],
+            method: [
+              "Form Koftas: Mix mince with cumin, coriander, cinnamon, garlic powder, fresh mint, salt. Shape into 12 oval patties.",
+              "Cook: Pan-sear koftas in skillet with olive oil 4-5 mins per side until browned and cooked through.",
+              "Sauce: Whisk Chobani yogurt, tahini, lemon juice, chopped mint, and warm water.",
+              "Saturday Dinner: Assemble wraps with salad greens, cucumber, tomato, avocado, 3 koftas per wrap, and sauce.",
+              "Sunday Dinner: Warm leftover koftas 60s and assemble fresh wraps in 3 mins."
+            ]
+          }
+        ]
+      }
+    };
+
+    const SPECIALS_STOCKPILES = [
+      { store: "Woolworths", name: "Chobani Greek Yoghurt Passion Fruit / Plain 160g-907g", deal: "On Special" },
+      { store: "Woolworths", name: "Cocobella Pure Coconut Water 1L", deal: "Half Price ($3.00)" },
+      { store: "Woolworths", name: "Sirena Italian Style Tuna in Oil 185g", deal: "On Special" },
+      { store: "Woolworths", name: "Simson's Pantry Lower Carb Wholemeal Wraps 5pk", deal: "On Special" },
+      { store: "Woolworths", name: "Woolworths 4 Pack Salmon Portions Skin On 460g", deal: "On Special" },
+      { store: "Woolworths", name: "Ingham's Turkey Breast Mince 400g-500g", deal: "On Special" },
+      { store: "Woolworths", name: "Grinders Espresso / Crema Coffee Beans 1kg", deal: "On Special ($17.00)" },
+      { store: "Woolworths", name: "Vevelle / Quilton 3 Ply Toilet Tissue 24 pack", deal: "On Special" },
+      { store: "Woolworths", name: "Glow Lab Coconut & Spiced Fig Hand Wash 300mL", deal: "On Special" },
+      { store: "Woolworths", name: "Bref Deluxe Toilet Cleaner Blocks 2 pack", deal: "On Special" },
+      { store: "Woolworths", name: "Twinings Pure Peppermint Tea Bags 80 pack", deal: "On Special" }
+    ];
+
+    // Current User Selections (Default to Option 1 for each container)
+    let selectedMeals = {
+      container_1: 0,
+      container_2: 0,
+      container_3: 0,
+      container_4: 0
+    };
+
+    // Checked shopping items
+    let checkedItems = new Set();
+
+    // =========================================================================
+    // INITIALIZATION & TAB SWITCHING
+    // =========================================================================
+
+    function init() {
+      loadState();
+      renderPlanOptions();
+      renderSchedule();
+      renderShoppingList();
+      renderSpecials();
+      renderRecipeCards();
+    }
+
+    function switchTab(tabId, el) {
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      if (el) el.classList.add('active');
+    }
+
+    // =========================================================================
+    // RENDER: MEAL PLAN SELECTOR (TAB 1)
+    // =========================================================================
+
+    function renderPlanOptions() {
+      for (const [cKey, cData] of Object.entries(CATALOG)) {
+        const gridEl = document.getElementById(`${cKey.replace('_', '-')}-options`);
+        gridEl.innerHTML = '';
+
+        cData.options.forEach((opt, idx) => {
+          const isSelected = selectedMeals[cKey] === idx;
+          const card = document.createElement('div');
+          card.className = `option-card ${isSelected ? 'selected' : ''}`;
+          card.onclick = () => selectOption(cKey, idx);
+
+          card.innerHTML = `
+            <div>
+              <div class="option-header">
+                <h4 class="option-title">${opt.title}</h4>
+                <div class="check-circle">
+                  <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+              </div>
+              <div class="option-badges">
+                ${opt.special ? `<span class="badge special">${opt.special}</span>` : ''}
+                <span class="badge prep">${opt.prep}</span>
+                <span class="badge clinical">${opt.clinical}</span>
+              </div>
+            </div>
+            <div class="option-macros">
+              <strong>${opt.protein}</strong>
+              <span>${opt.cals}</span>
+            </div>
+          `;
+          gridEl.appendChild(card);
+        });
+      }
+    }
+
+    function selectOption(containerKey, optionIndex) {
+      selectedMeals[containerKey] = optionIndex;
+      saveState();
+      renderPlanOptions();
+      renderSchedule();
+      renderShoppingList();
+      renderRecipeCards();
+    }
+
+    function resetToRecommendations() {
+      selectedMeals = {
+        container_1: 0,
+        container_2: 0,
+        container_3: 0,
+        container_4: 0
+      };
+      saveState();
+      renderPlanOptions();
+      renderSchedule();
+      renderShoppingList();
+      renderRecipeCards();
+    }
+
+    // =========================================================================
+    // RENDER: WEEKLY SCHEDULE (TAB 2)
+    // =========================================================================
+
+    let currentCalendarView = 'grid';
+
+    function setCalendarView(mode) {
+      currentCalendarView = mode;
+      const gridEl = document.getElementById('calendar-grid-7');
+      const tableEl = document.getElementById('calendar-table-wrap');
+      const btnGrid = document.getElementById('btn-view-grid');
+      const btnTable = document.getElementById('btn-view-table');
+
+      if (mode === 'grid') {
+        gridEl.style.display = 'grid';
+        tableEl.style.display = 'none';
+        btnGrid.classList.add('active');
+        btnTable.classList.remove('active');
+      } else {
+        gridEl.style.display = 'none';
+        tableEl.style.display = 'block';
+        btnTable.classList.add('active');
+        btnGrid.classList.remove('active');
+      }
+    }
+
+    function renderSchedule() {
+      const grid = document.getElementById('calendar-grid-7');
+      const tableBody = document.getElementById('calendar-table-body');
+      if (!grid || !tableBody) return;
+
+      const m1 = CATALOG.container_1.options[selectedMeals.container_1];
+      const m2 = CATALOG.container_2.options[selectedMeals.container_2];
+      const m3 = CATALOG.container_3.options[selectedMeals.container_3];
+      const m4 = CATALOG.container_4.options[selectedMeals.container_4];
+
+      const days = [
+        {
+          short: "MON",
+          full: "Monday",
+          status: "Cook Dinner 1",
+          statusClass: "cook",
+          isCook: true,
+          lunch: {
+            title: m1.title,
+            portion: "1 of 4",
+            action: "Prepped Sunday glass bake"
+          },
+          dinner: {
+            title: m2.title,
+            portion: "1 of 3",
+            action: "Cook 6 servings in Dutch oven"
+          },
+          tip: "Stew covers Mon, Tue, and Wed"
+        },
+        {
+          short: "TUE",
+          full: "Tuesday",
+          status: "Reheat Only",
+          statusClass: "reheat",
+          isCook: false,
+          lunch: {
+            title: m1.title,
+            portion: "2 of 4",
+            action: "Eat cold or warm in container"
+          },
+          dinner: {
+            title: m2.title,
+            portion: "2 of 3",
+            action: "Reheat 3 mins (flavors deeper)"
+          },
+          tip: "Zero active cooking tonight"
+        },
+        {
+          short: "WED",
+          full: "Wednesday",
+          status: "Reheat Only",
+          statusClass: "reheat",
+          isCook: false,
+          lunch: {
+            title: m1.title,
+            portion: "3 of 4",
+            action: "Eat cold or warm in container"
+          },
+          dinner: {
+            title: m2.title,
+            portion: "3 of 3",
+            action: "Final portions of Cacciatore stew"
+          },
+          tip: "Zero active cooking tonight"
+        },
+        {
+          short: "THU",
+          full: "Thursday",
+          status: "Cook Dinner 2",
+          statusClass: "cook",
+          isCook: true,
+          lunch: {
+            title: m1.title,
+            portion: "4 of 4",
+            action: "Final glass bake lunch container"
+          },
+          dinner: {
+            title: m3.title,
+            portion: "1 of 2",
+            action: "Pan-sear 4 salmon; roast broccolini"
+          },
+          tip: "Cook lentils & broccolini for 2 nights"
+        },
+        {
+          short: "FRI",
+          full: "Friday",
+          status: "Gentle Warm",
+          statusClass: "reheat",
+          isCook: false,
+          lunch: {
+            title: "Sirena Tuna & Avocado Salad Wrap",
+            portion: "Fresh",
+            action: "Pantry Sirena tuna & wholemeal wrap"
+          },
+          dinner: {
+            title: m3.title,
+            portion: "2 of 2",
+            action: "Reheat lentils hot; warm fish gently"
+          },
+          tip: "Warm fish at 50% power (60s) to keep moist"
+        },
+        {
+          short: "SAT",
+          full: "Saturday",
+          status: "15-Min Grill",
+          statusClass: "cook",
+          isCook: true,
+          lunch: {
+            title: "Fresh Weekend Lunch / Salad",
+            portion: "Flex",
+            action: "Light weekend brunch"
+          },
+          dinner: {
+            title: m4.title,
+            portion: "1 of 2",
+            action: "Flash-sear chicken 8 mins in skillet"
+          },
+          tip: "Stir tzatziki; assemble 4 warm wraps"
+        },
+        {
+          short: "SUN",
+          full: "Sunday",
+          status: "Assemble & Prep",
+          statusClass: "prep",
+          isCook: true,
+          lunch: {
+            title: "Fresh Weekend Lunch / Salad",
+            portion: "Flex",
+            action: "Light weekend brunch"
+          },
+          dinner: {
+            title: m4.title,
+            portion: "2 of 2",
+            action: "Assemble wraps in 3 mins from fridge"
+          },
+          tip: "Run 10-Min Glass-Bake for Mon–Thu"
+        }
+      ];
+
+      // 1. Render 7-Day Grid
+      grid.innerHTML = days.map(d => `
+        <div class="calendar-col ${d.isCook ? 'is-cook-day' : ''}">
+          <div class="col-header">
+            <div class="col-day-short">${d.short}</div>
+            <div class="col-day-full">${d.full}</div>
+            <span class="col-status-badge ${d.statusClass}">${d.status}</span>
+          </div>
+
+          <div class="col-body">
+            <div class="calendar-event lunch">
+              <div>
+                <div class="event-tag-row">
+                  <span class="event-tag lunch">Lunch</span>
+                  <span class="event-portion">${d.lunch.portion}</span>
+                </div>
+                <div class="event-title">${d.lunch.title}</div>
+              </div>
+              <div class="event-action">${d.lunch.action}</div>
+            </div>
+
+            <div class="calendar-event dinner">
+              <div>
+                <div class="event-tag-row">
+                  <span class="event-tag dinner">Dinner</span>
+                  <span class="event-portion">${d.dinner.portion}</span>
+                </div>
+                <div class="event-title">${d.dinner.title}</div>
+              </div>
+              <div class="event-action">${d.dinner.action}</div>
+            </div>
+          </div>
+
+          <div class="col-footer-tip">${d.tip}</div>
+        </div>
+      `).join('');
+
+      // 2. Render Planner Table
+      tableBody.innerHTML = days.map(d => `
+        <tr>
+          <td class="table-day-cell">
+            <strong>${d.full}</strong>
+          </td>
+          <td>
+            <span class="col-status-badge ${d.statusClass}">${d.status}</span>
+          </td>
+          <td>
+            <span class="table-meal-title">${d.lunch.title}</span>
+            <span class="table-meal-meta">${d.lunch.portion} • ${d.lunch.action}</span>
+          </td>
+          <td>
+            <span class="table-meal-title">${d.dinner.title}</span>
+            <span class="table-meal-meta">${d.dinner.portion} • ${d.dinner.action}</span>
+          </td>
+          <td>
+            <span class="table-meal-meta">${d.tip}</span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // =========================================================================
+    // RENDER: SHOPPING CHECKLIST (TAB 3)
+    // =========================================================================
+
+    let currentStoreFilter = 'all';
+
+    function filterShoppingStore(store, el) {
+      currentStoreFilter = store;
+      document.querySelectorAll('.store-filter-btn').forEach(b => b.classList.remove('active'));
+      if (el) el.classList.add('active');
+      renderShoppingList();
+    }
+
+    function renderShoppingList() {
+      const aislesContainer = document.getElementById('shopping-aisles');
+      if (!aislesContainer) return;
+
+      const m1 = CATALOG.container_1.options[selectedMeals.container_1];
+      const m2 = CATALOG.container_2.options[selectedMeals.container_2];
+      const m3 = CATALOG.container_3.options[selectedMeals.container_3];
+      const m4 = CATALOG.container_4.options[selectedMeals.container_4];
+
+      // 1. Dynamically assemble Produce with Unit Pricing
+      let produce = [
+        { text: "Hass Avocados (3–4)", unitPrice: "$4.50/kg ($1.50 ea)", store: "Coles", note: "Coles I'm Perfect 1kg bag ($4.50) or 2 for $3.50 promo saves >50% per kg vs loose" }
+      ];
+
+      if (selectedMeals.container_1 === 0 || selectedMeals.container_3 === 0) {
+        produce.push({ text: "Broccolini (2 bunches)", unitPrice: "$15.71/kg ($2.75/ea)", store: "Woolies", note: "Active special. (Hedge: standard Broccoli head is $3.50/kg for 78% lower unit cost)" });
+      }
+      if (selectedMeals.container_2 === 0 || selectedMeals.container_1 === 2) {
+        produce.push({ text: "Green Zucchinis (2 medium / 750g)", unitPrice: "$3.60/kg", store: "Woolies", note: "The Odd Bunch 750g prepack is $2.70 vs loose $4.50/kg" });
+        produce.push({ text: "Mushroom Cups (300g–500g)", unitPrice: "$10.00/kg", store: "Tie", note: "Whole loose cups ($10/kg) beat pre-sliced punnets ($17.50/kg) by $7.50/kg" });
+      }
+      if (selectedMeals.container_1 === 1 || selectedMeals.container_2 === 0) {
+        produce.push({ text: "Red Capsicums (2–3)", unitPrice: "$3.50/kg", store: "Woolies", note: "The Odd Bunch 1kg bag is $3.50/kg vs loose $6.90/kg" });
+      }
+      if (selectedMeals.container_3 === 2) {
+        produce.push({ text: "Baby Bok Choy or Choy Sum (2 bunches)", unitPrice: "$1.40/bunch", store: "Woolies", note: "Fresh Asian greens on promo" });
+      }
+      if (selectedMeals.container_4 === 1) {
+        produce.push({ text: "Purple Cabbage (1/4 head)", unitPrice: "$2.50/kg", store: "Tie", note: "Lowest unit cost vegetable crunch; lasts 3+ weeks in fridge" });
+      }
+
+      produce.push({ text: "Lebanese Cucumbers (2–3)", unitPrice: "$2.93/kg", store: "Woolies", note: "The Odd Bunch 750g punnet is $2.20 vs loose $8.30/kg" });
+      produce.push({ text: "Sweet Solanato Tomatoes (2 punnets)", unitPrice: "$14.00/kg ($3.50/ea)", store: "Woolies", note: "Sweet Solanato 250g is Woolies exclusive; Coles Perino is $16.00/kg" });
+      produce.push({ text: "Baby Spinach or Salad Greens (1 bulk 280g bag)", unitPrice: "$12.50/kg ($3.50/bag)", store: "Woolies", note: "280g family bag is $12.50/kg vs $33.33/kg for 60g bags" });
+      produce.push({ text: "Aromatics & Citrus (Onions, Garlic, Ginger, 3 Lemons)", unitPrice: "$2.50/kg avg", store: "Woolies", note: "Woolies loose lemons ($0.80 ea) & brown onions ($2.20/kg)" });
+      produce.push({ text: "Fresh Herbs (Coriander, Rosemary, Dill)", unitPrice: "$3.00/bunch", store: "Woolies", note: "Fresh bunches flat $3.00" });
+
+      // 2. Dynamically assemble Meat & Seafood with Unit Pricing
+      let meat = [];
+      let chickenGrams = 0;
+      if (selectedMeals.container_1 !== -1) chickenGrams += 700;
+      if (selectedMeals.container_4 === 0) chickenGrams += 700;
+
+      if (chickenGrams > 0) {
+        meat.push({ text: `RSPCA Chicken Breast Fillets (${(chickenGrams/1000).toFixed(1)}kg bulk pack)`, unitPrice: "$11.50/kg", store: "Tie", note: "1.8kg bulk family tray is $11.50/kg vs $15.00/kg 500g trays" });
+      }
+      if (selectedMeals.container_2 === 0 || selectedMeals.container_2 === 1 || selectedMeals.container_4 === 2) {
+        meat.push({ text: "Inghams Turkey Breast Mince (800g)", unitPrice: "$16.25/kg ($6.50/400g)", store: "Woolies", note: "Discounted to $6.50 at Woolies vs Coles $18.75/kg ($7.50/400g)" });
+      }
+      if (selectedMeals.container_3 === 0 || selectedMeals.container_3 === 2) {
+        meat.push({ text: "Tasmanian Salmon Fillets (4 x 160g portions)", unitPrice: "$36.95/kg ($17.00/4pk)", store: "Woolies", note: "Woolies 460g 4-pack Skin On on special vs $42.00/kg deli counter" });
+      } else if (selectedMeals.container_3 === 1) {
+        meat.push({ text: "Australian Barramundi Fillets (4 x 180g portions)", unitPrice: "$34.00/kg", store: "Woolies", note: "Fresh skin-on barramundi portions" });
+      }
+      if (selectedMeals.container_4 === 1) {
+        meat.push({ text: "Australian Tiger Prawns (600g raw peeled)", unitPrice: "$28.00/kg", store: "Coles", note: "Coles wild thawed prawns" });
+      }
+
+      // 3. Pantry, Legumes & Dairy Bases with Unit Pricing
+      let pantry = [
+        { text: "Canned Chickpeas & Cannellini Beans (3 tins x 400g)", unitPrice: "$2.75/kg ($1.10/can)", store: "Tie", note: "Homebrand $1.10 cans equal brand name $5.50/kg pulses" },
+        { text: "Brown Lentils (1.5 cups dry or 2 x 400g tins)", unitPrice: "$2.75/kg", store: "Tie", note: "Homebrand $1.10/400g can or dry lentils @ $2.20/kg" },
+        { text: "Italian Diced Tomatoes or Mutti Passata (2 tins / 700g)", unitPrice: "$3.00/kg ($1.20/can)", store: "Tie", note: "Canned Italian chopped tomatoes price parity" },
+        { text: "Raw Jasmine Rice (1kg bag) or Quinoa", unitPrice: "$2.20/kg", store: "Woolies", note: "Sunrice 1kg on special @ $2.20 vs $7.20/kg for microwave pouches" },
+        { text: "Woolworths Lower Carb Wholemeal Wraps (5-8pk)", unitPrice: "$15.55/kg ($3.50/pk)", store: "Woolies", note: "Woolies Lower Carb brand beats Simson's $4.80 pack" },
+        { text: "Chobani Plain Non-Fat Greek Yogurt (907g tub)", unitPrice: "$7.17/kg ($0.72/100g)", store: "Woolies", note: "907g tub on special is half the unit cost of 160g pouches ($15.63/kg)" },
+        { text: "Extra Virgin Olive Oil (1L bottle)", unitPrice: "$1.60/100mL ($16/L)", store: "Woolies", note: "Red Island 1L on 40% special vs $2.40/100mL 500mL bottle" },
+        { text: "Kalamata Olives & Capers (1 jar each)", unitPrice: "$16.00/kg", store: "Woolies", note: "Woolies homebrand jars save $0.20 per jar" },
+        { text: "Chicken or Vegetable Bone Broth (1L)", unitPrice: "$4.50/L", store: "Tie", note: "Continental / Campbell's bone broth parity" },
+        { text: "Hulled Tahini (Mayver's 385g)", unitPrice: "$1.25/100g ($4.80/jar)", store: "Woolies", note: "Mayver's on special at Woolies vs $1.56/100g full price" }
+      ];
+
+      // 4. Regular Household Consumables with Unit Pricing
+      let household = [
+        { text: "Toilet Paper (Vevelle / Quilton 24pk)", unitPrice: "$0.25/100 sheets", store: "Woolies", note: "Half-price special @ $11.00 for 4,320 sheets vs $0.55/100 sheets 6-pack" },
+        { text: "Paper Towels (Handee Ultra / Quilton Tuffy 2–3pk)", unitPrice: "$2.50/100 sheets", store: "Coles", note: "Handee Ultra 4pk promo @ $6.00 vs Viva $3.75/100 sheets" },
+        { text: "Glow Lab Coconut & Fig Hand Wash (900ml refill)", unitPrice: "$0.60/100mL", store: "Woolies", note: "900mL refill on 40% special @ $5.40 vs $1.83/100mL pump bottle" },
+        { text: "Bref Spa Moments Toilet Cleaner Rim Blocks (2pk)", unitPrice: "$2.50/block", store: "Woolies", note: "2-pack on special @ $5.00 vs $4.25 single block" },
+        { text: "Grinders Espresso Coffee Beans (1kg)", unitPrice: "$1.70/100g ($17.00/kg)", store: "Woolies", note: "1kg bag on 50% special @ $17.00 vs $45.00/kg 200g bag" },
+        { text: "Twinings Pure Peppermint Tea (80–100pk)", unitPrice: "$0.07/tea bag", store: "Woolies", note: "80-pack on half price @ $5.50 vs $0.18/bag 25-pack" }
+      ];
+
+      const aisles = [
+        { title: "Fresh Produce", items: produce },
+        { title: "Meat & Seafood", items: meat },
+        { title: "Pantry, Legumes & Dairy Bases", items: pantry },
+        { title: "Household & Consumables", items: household }
+      ];
+
+      // Calculate totals per store for filter buttons
+      let allItems = [];
+      aisles.forEach(a => { allItems = allItems.concat(a.items); });
+      const totalCount = allItems.length;
+      const wooliesCount = allItems.filter(i => i.store === 'Woolies').length;
+      const colesCount = allItems.filter(i => i.store === 'Coles').length;
+      const tieCount = allItems.filter(i => i.store === 'Tie').length;
+
+      const fAll = document.getElementById('filter-all');
+      const fWoolies = document.getElementById('filter-woolies');
+      const fColes = document.getElementById('filter-coles');
+      const fTie = document.getElementById('filter-tie');
+      if (fAll) fAll.innerText = `All Items (${totalCount})`;
+      if (fWoolies) fWoolies.innerText = `Woolworths Best Unit Cost (${wooliesCount})`;
+      if (fColes) fColes.innerText = `Coles Best Unit Cost (${colesCount})`;
+      if (fTie) fTie.innerText = `Price Parity / Ties (${tieCount})`;
+
+      let allItemCount = 0;
+      let checkedCount = 0;
+
+      let renderedAislesHtml = '';
+
+      aisles.forEach(aisle => {
+        const filteredItems = aisle.items.filter(item => {
+          if (currentStoreFilter === 'all') return true;
+          return item.store === currentStoreFilter;
+        });
+
+        if (filteredItems.length === 0) return;
+
+        allItemCount += filteredItems.length;
+        const renderedItems = filteredItems.map(item => {
+          const isChecked = checkedItems.has(item.text);
+          if (isChecked) checkedCount++;
+          return `
+            <div class="checklist-item ${isChecked ? 'checked' : ''}" onclick="toggleCheck('${escapeHtml(item.text)}')">
+              <div class="custom-checkbox">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div style="flex-grow: 1;">
+                <div class="item-unit-row">
+                  <span class="item-text">${item.text}</span>
+                  <span class="unit-badge ${item.store === 'Coles' ? 'coles' : (item.store === 'Woolies' ? 'woolies' : 'tie')}">${item.unitPrice} • ${item.store}</span>
+                </div>
+                <span class="item-note">${item.note}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        renderedAislesHtml += `
+          <div class="aisle-section">
+            <h3 class="aisle-title">${aisle.title} <span class="count">(${filteredItems.length} items)</span></h3>
+            <div class="item-list">${renderedItems}</div>
+          </div>
+        `;
+      });
+
+      aislesContainer.innerHTML = renderedAislesHtml;
+
+      // Update progress bar
+      const pct = allItemCount > 0 ? Math.round((checkedCount / allItemCount) * 100) : 0;
+      const progressFill = document.getElementById('progress-fill');
+      const progressText = document.getElementById('progress-text');
+      if (progressFill) progressFill.style.width = pct + '%';
+      if (progressText) progressText.innerText = `${checkedCount} of ${allItemCount} items checked (${pct}%)`;
+    }
+
+    function toggleCheck(itemText) {
+      if (checkedItems.has(itemText)) {
+        checkedItems.delete(itemText);
+      } else {
+        checkedItems.add(itemText);
+      }
+      saveState();
+      renderShoppingList();
+    }
+
+    function clearChecks() {
+      checkedItems.clear();
+      saveState();
+      renderShoppingList();
+    }
+
+    function copyShoppingList() {
+      const m1 = CATALOG.container_1.options[selectedMeals.container_1];
+      const m2 = CATALOG.container_2.options[selectedMeals.container_2];
+      const m3 = CATALOG.container_3.options[selectedMeals.container_3];
+      const m4 = CATALOG.container_4.options[selectedMeals.container_4];
+
+      let text = `Weekly Grocery Shopping List\nSelected Meals:\n1. ${m1.title}\n2. ${m2.title}\n3. ${m3.title}\n4. ${m4.title}\n\n`;
+
+      document.querySelectorAll('.aisle-section').forEach(section => {
+        const title = section.querySelector('.aisle-title').innerText;
+        text += `\n--- ${title} ---\n`;
+        section.querySelectorAll('.checklist-item').forEach(item => {
+          const itemText = item.querySelector('.item-text').innerText;
+          const isDone = item.classList.contains('checked') ? '[x]' : '[ ]';
+          text += `${isDone} ${itemText}\n`;
+        });
+      });
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Shopping checklist copied to clipboard!");
+      });
+    }
+
+    // =========================================================================
+    // RENDER: SPECIALS & RECIPE CARDS (TABS 3 & 5)
+    // =========================================================================
+
+    function renderSpecials() {
+      const list = document.getElementById('specials-list');
+      list.innerHTML = SPECIALS_STOCKPILES.map(s => `
+        <div>• <strong>${s.store}:</strong> ${s.name} <span style="color:var(--terracotta); font-weight:600;">(${s.deal})</span></div>
+      `).join('');
+    }
+
+    function renderRecipeCards() {
+      const container = document.getElementById('recipe-cards-container');
+      const m1 = CATALOG.container_1.options[selectedMeals.container_1];
+      const m2 = CATALOG.container_2.options[selectedMeals.container_2];
+      const m3 = CATALOG.container_3.options[selectedMeals.container_3];
+      const m4 = CATALOG.container_4.options[selectedMeals.container_4];
+
+      const meals = [
+        { num: 1, cName: CATALOG.container_1.name, meal: m1 },
+        { num: 2, cName: CATALOG.container_2.name, meal: m2 },
+        { num: 3, cName: CATALOG.container_3.name, meal: m3 },
+        { num: 4, cName: CATALOG.container_4.name, meal: m4 }
+      ];
+
+      container.innerHTML = meals.map(item => `
+        <div class="recipe-card">
+          <h3 class="recipe-title">Meal ${item.num}: ${item.meal.title}</h3>
+          <div class="recipe-meta-row">
+            <span><strong>Container:</strong> ${item.cName}</span>
+            <span><strong>Macros:</strong> ${item.meal.protein} | ${item.meal.carbs} | ${item.meal.fat} (${item.meal.cals})</span>
+            <span><strong>Clinical Benefit:</strong> ${item.meal.clinical}</span>
+          </div>
+
+          <div class="recipe-grid-2col">
+            <div class="ingredients-col">
+              <h4>Ingredients Required</h4>
+              <ul class="ingredient-bullet-list">
+                ${item.meal.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="method-col">
+              <h4>Preparation & Cooking</h4>
+              <ol class="method-step-list">
+                ${item.meal.method.map(step => `<li>${step}</li>`).join('')}
+              </ol>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // LOCAL STORAGE PERSISTENCE
+    // =========================================================================
+
+    function saveState() {
+      try {
+        localStorage.setItem('weekly_table_selections', JSON.stringify(selectedMeals));
+        localStorage.setItem('weekly_table_checks', JSON.stringify(Array.from(checkedItems)));
+      } catch (e) {
+        console.warn("Storage not available");
+      }
+    }
+
+    function loadState() {
+      try {
+        const savedMeals = localStorage.getItem('weekly_table_selections');
+        if (savedMeals) selectedMeals = JSON.parse(savedMeals);
+
+        const savedChecks = localStorage.getItem('weekly_table_checks');
+        if (savedChecks) checkedItems = new Set(JSON.parse(savedChecks));
+      } catch (e) {
+        console.warn("Error loading state");
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // Run on mount
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
