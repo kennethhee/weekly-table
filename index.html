@@ -611,6 +611,98 @@
       cursor: default;
     }
 
+    
+    /* Nutrition Audit Accordion & Table */
+    .nutrition-audit-accordion {
+      margin: 14px 0 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg-warm);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .audit-summary-btn {
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--olive-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      background: var(--surface);
+      border-bottom: 1px solid transparent;
+      transition: background 0.15s ease;
+    }
+
+    .nutrition-audit-accordion[open] .audit-summary-btn {
+      border-bottom-color: var(--border);
+      background: var(--surface-subtle);
+    }
+
+    .audit-summary-btn:hover {
+      background: var(--surface-subtle);
+    }
+
+    .audit-badge-verified {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--olive);
+      background: var(--olive-light);
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      border: 1px solid #D6E0D4;
+    }
+
+    .audit-table-wrap {
+      padding: 12px 14px 14px;
+      overflow-x: auto;
+      background: var(--bg-warm);
+    }
+
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+      text-align: left;
+    }
+
+    .audit-table th {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 9.5px;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      padding: 6px 6px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .audit-table td {
+      padding: 6px 6px;
+      border-bottom: 1px solid #EBE5DB;
+      color: var(--text-main);
+    }
+
+    .audit-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .audit-table tfoot td {
+      font-weight: 700;
+      border-top: 1.5px solid var(--border);
+      background: var(--surface-subtle);
+      color: var(--text-main);
+    }
+
+    .audit-footer-note {
+      margin-top: 10px;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
     /* Weekly Calendar Spread & Table */
     .calendar-wrapper {
       background: var(--surface);
@@ -1704,356 +1796,1192 @@
     // =========================================================================
 
     const CATALOG = {
-      container_1: {
-        name: "Container 1: Mon–Thu Batch Lunches",
-        profile: "Direct-in-Glass-Container Oven Bake (4 Servings)",
-        options: [
+  "container_1": {
+    "name": "Container 1: Mon–Thu Batch Lunches",
+    "profile": "Direct-in-Glass-Container Oven Bake (4 Servings)",
+    "options": [
+      {
+        "id": "c1_opt1",
+        "title": "Greek Lemon-Oregano Chicken, Chickpea & Rice Glass Bake",
+        "cuisine": "Greek / Mediterranean",
+        "protein": "52.7g Protein",
+        "carbs": "50.4g Carbs (5.9g Fiber)",
+        "fat": "9.7g Fat",
+        "cals": "514 kcal",
+        "special": "Coles/Woolies Specials Synced",
+        "prep": "Zero Pots / Pans",
+        "clinical": "Enterohepatic Estrogen Clearance",
+        "ingredients": [
+          "700g Woolworths/Coles RSPCA Chicken Breast Fillets (divided into 4 x 175g portions)",
+          "1 cup raw white jasmine rice (1/4 cup per glass container)",
+          "1 tin (400g) chickpeas (rinsed & drained, 1/3 cup per container)",
+          "1 punnet (250g) cherry or Sweet Solanato tomatoes (halved)",
+          "2 Lebanese cucumbers (diced, served fresh on side)",
+          "1/3 cup pitted kalamata olives (halved)",
+          "500ml chicken bone broth",
+          "1 lemon (juiced & zested) + 4 cloves garlic (minced)",
+          "1 tbsp extra virgin olive oil, 1.5 tbsp Greek oregano, 1/2 tsp turmeric, sea salt"
+        ],
+        "method": [
+          "Line up 4 oven-safe glass meal prep containers. Add 1/4 cup raw jasmine rice, 1/3 cup chickpeas, and halved cherry tomatoes to the bottom of each container.",
+          "Bring 500ml chicken bone broth to a boil. Whisk in lemon juice, minced garlic, 1 tbsp olive oil, 1 tbsp Greek oregano, 1/2 tsp turmeric, salt, and pepper.",
+          "Place 175g raw chicken breast directly on top of the grains in each container. Pour 1/2 cup hot seasoned broth evenly into each container.",
+          "Cover the tops tightly with aluminum foil. Bake at 180°C fan-forced for 35 minutes.",
+          "Remove foil and bake for another 10 minutes until chicken is golden, cooked through (74°C), and broth is completely absorbed into the rice.",
+          "Scatter kalamata olives on top, cool 15 minutes, snap on lids, and refrigerate."
+        ],
+        "auditBreakdown": [
           {
-            id: "c1_opt1",
-            title: "Greek Lemon-Oregano Chicken, Chickpea & Rice Glass Bake",
-            cuisine: "Greek / Mediterranean",
-            protein: "46g Protein",
-            carbs: "40g Carbs (8g Fiber)",
-            fat: "12g Fat",
-            cals: "460 kcal",
-            special: "Coles/Woolies Specials Synced",
-            prep: "Zero Pots / Pans",
-            clinical: "Enterohepatic Estrogen Clearance",
-            ingredients: [
-              "700g Woolworths/Coles RSPCA Chicken Breast Fillets (divided into 4 x 175g portions)",
-              "1 cup raw white jasmine rice (1/4 cup per glass container)",
-              "1 tin (400g) chickpeas (rinsed & drained, 1/3 cup per container)",
-              "1 punnet (250g) cherry or Sweet Solanato tomatoes (halved)",
-              "2 Lebanese cucumbers (diced, served fresh on side)",
-              "1/3 cup pitted kalamata olives (halved)",
-              "500ml chicken bone broth",
-              "1 lemon (juiced & zested) + 4 cloves garlic (minced)",
-              "1 tbsp extra virgin olive oil, 1.5 tbsp Greek oregano, 1/2 tsp turmeric, sea salt"
-            ],
-            method: [
-              "Line up 4 oven-safe glass meal prep containers. Add 1/4 cup raw jasmine rice, 1/3 cup chickpeas, and halved cherry tomatoes to the bottom of each container.",
-              "Bring 500ml chicken bone broth to a boil. Whisk in lemon juice, minced garlic, 1 tbsp olive oil, 1 tbsp Greek oregano, 1/2 tsp turmeric, salt, and pepper.",
-              "Place 175g raw chicken breast directly on top of the grains in each container. Pour 1/2 cup hot seasoned broth evenly into each container.",
-              "Cover the tops tightly with aluminum foil. Bake at 180°C fan-forced for 35 minutes.",
-              "Remove foil and bake for another 10 minutes until chicken is golden, cooked through (74°C), and broth is completely absorbed into the rice.",
-              "Scatter kalamata olives on top, cool 15 minutes, snap on lids, and refrigerate."
-            ]
+            "name": "Chicken Breast, skinless, raw (Coles/Woolworths RSPCA)",
+            "grams": 700,
+            "protein": 157.5,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 10.5,
+            "cals": 735,
+            "source": "FSANZ AFCD F002258 / Pack NIP"
           },
           {
-            id: "c1_opt2",
-            title: "Smoky Chipotle Chicken, Black Bean & Rice Glass Bake",
-            cuisine: "Smoky Spanish / Fiesta",
-            protein: "45g Protein",
-            carbs: "42g Carbs (10g Fiber)",
-            fat: "11g Fat",
-            cals: "450 kcal",
-            special: "Simson's Wraps / Corn Deals",
-            prep: "Zero Pots / Pans",
-            clinical: "Phase II Hepatic Support",
-            ingredients: [
-              "700g Woolworths/Coles RSPCA Chicken Breast Fillets (4 x 175g portions)",
-              "1 cup raw white jasmine or brown rice (1/4 cup per container)",
-              "1 tin (400g) black beans (rinsed & drained, 1/3 cup per container)",
-              "2 red capsicums (diced) + 1 small tin sweet corn",
-              "2 fresh limes + 1 bunch fresh coriander",
-              "500ml chicken bone broth",
-              "Smoked paprika, ground cumin, chipotle powder, olive oil, sea salt"
-            ],
-            method: [
-              "Line up 4 oven-safe glass containers. Divide rice, black beans, diced capsicum, and sweet corn evenly.",
-              "Season raw chicken breasts with 1 tsp smoked paprika, 1 tsp cumin, 1/2 tsp chipotle powder, and salt. Place on top in each container.",
-              "Bring 500ml chicken bone broth to a boil with lime juice. Pour 1/2 cup boiling broth into each container.",
-              "Cover tightly with foil; bake at 180°C for 35 minutes.",
-              "Uncover and bake 10 minutes until chicken is golden and liquid is absorbed.",
-              "Garnish with coriander, cool, snap on lids, and refrigerate."
-            ]
+            "name": "Jasmine Fragrant White Rice, dry (SunRice)",
+            "grams": 190,
+            "protein": 14.25,
+            "carbs": 150.1,
+            "fiber": 3.42,
+            "fat": 1.52,
+            "cals": 674.5,
+            "source": "SunRice Pack NIP"
           },
           {
-            id: "c1_opt3",
-            title: "Tuscan Herb Chicken, Mushroom & Cannellini Glass Bake",
-            cuisine: "Italian Tuscan",
-            protein: "45g Protein",
-            carbs: "36g Carbs (9g Fiber)",
-            fat: "12g Fat",
-            cals: "440 kcal",
-            special: "Mushroom Cups 14x in Receipts",
-            prep: "Zero Pots / Pans",
-            clinical: "Gut Biome Prebiotics",
-            ingredients: [
-              "700g Woolworths/Coles RSPCA Chicken Breast Fillets (4 x 175g portions)",
-              "1 cup raw white jasmine rice (1/4 cup per container)",
-              "1 tin (400g) cannellini beans (rinsed & drained, 1/3 cup per container)",
-              "300g mushroom cups (sliced) + 1 medium zucchini (diced)",
-              "1/2 cup Italian passata / crushed tomatoes",
-              "500ml chicken bone broth",
-              "Dried rosemary, dried oregano, garlic, extra virgin olive oil, sea salt"
-            ],
-            method: [
-              "Divide raw rice, cannellini beans, sliced mushrooms, and zucchini across 4 glass containers.",
-              "Place 175g seasoned raw chicken breast on top in each container.",
-              "Boil bone broth with tomato passata, minced garlic, rosemary, and oregano. Pour 1/2 cup hot broth into each container.",
-              "Cover tightly with foil and bake at 180°C for 35 minutes.",
-              "Uncover and bake 10 minutes until chicken is lightly browned and rice is tender.",
-              "Drizzle with cold extra virgin olive oil before refrigerating."
-            ]
+            "name": "Chickpeas, canned, rinsed & drained",
+            "grams": 240,
+            "protein": 16.32,
+            "carbs": 36.48,
+            "fiber": 13.92,
+            "fat": 3.84,
+            "cals": 278.4,
+            "source": "Coles/Woolies Brand NIP / FSANZ"
+          },
+          {
+            "name": "Cherry Tomatoes, fresh",
+            "grams": 250,
+            "protein": 2.5,
+            "carbs": 8.75,
+            "fiber": 3,
+            "fat": 0.5,
+            "cals": 50,
+            "source": "FSANZ AFCD F008681"
+          },
+          {
+            "name": "Kalamata Olives, pitted",
+            "grams": 50,
+            "protein": 0.55,
+            "carbs": 0.6,
+            "fiber": 1.6,
+            "fat": 8,
+            "cals": 82.5,
+            "source": "Always Fresh / FSANZ"
+          },
+          {
+            "name": "Chicken Bone Broth (Woolworths/Tonrick)",
+            "grams": 500,
+            "protein": 18,
+            "carbs": 2,
+            "fiber": 0,
+            "fat": 1.5,
+            "cals": 95,
+            "source": "Macro Bone Broth NIP"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 14,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 12.88,
+            "cals": 115.92000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          },
+          {
+            "name": "Lebanese Cucumber, fresh unpeeled",
+            "grams": 200,
+            "protein": 1.6,
+            "carbs": 3.6,
+            "fiber": 1.6,
+            "fat": 0.2,
+            "cals": 24,
+            "source": "FSANZ AFCD F003440"
           }
-        ]
+        ],
+        "servings": 4
       },
-      container_2: {
-        name: "Container 2: Mon–Wed Dinner Stew",
-        profile: "One-Pot Braise (6 Servings: 2 people x 3 nights)",
-        options: [
+      {
+        "id": "c1_opt2",
+        "title": "Smoky Chipotle Chicken, Black Bean & Rice Glass Bake",
+        "cuisine": "Smoky Spanish / Fiesta",
+        "protein": "53.2g Protein",
+        "carbs": "54.8g Carbs (6.6g Fiber)",
+        "fat": "7.5g Fat",
+        "cals": "514 kcal",
+        "special": "Simson's Wraps / Corn Deals",
+        "prep": "Zero Pots / Pans",
+        "clinical": "Phase II Hepatic Support",
+        "ingredients": [
+          "700g Woolworths/Coles RSPCA Chicken Breast Fillets (4 x 175g portions)",
+          "1 cup raw white jasmine or brown rice (1/4 cup per container)",
+          "1 tin (400g) black beans (rinsed & drained, 1/3 cup per container)",
+          "2 red capsicums (diced) + 1 small tin sweet corn",
+          "2 fresh limes + 1 bunch fresh coriander",
+          "500ml chicken bone broth",
+          "Smoked paprika, ground cumin, chipotle powder, olive oil, sea salt"
+        ],
+        "method": [
+          "Line up 4 oven-safe glass containers. Divide rice, black beans, diced capsicum, and sweet corn evenly.",
+          "Season raw chicken breasts with 1 tsp smoked paprika, 1 tsp cumin, 1/2 tsp chipotle powder, and salt. Place on top in each container.",
+          "Bring 500ml chicken bone broth to a boil with lime juice. Pour 1/2 cup boiling broth into each container.",
+          "Cover tightly with foil; bake at 180°C for 35 minutes.",
+          "Uncover and bake 10 minutes until chicken is golden and liquid is absorbed.",
+          "Garnish with coriander, cool, snap on lids, and refrigerate."
+        ],
+        "auditBreakdown": [
           {
-            id: "c2_opt1",
-            title: "Mediterranean Turkey & Cannellini Bean Cacciatore",
-            cuisine: "Italian Tuscan",
-            protein: "43g Protein",
-            carbs: "32g Carbs (9g Fiber)",
-            fat: "13g Fat",
-            cals: "430 kcal",
-            special: "Ingham's Turkey Mince on Special",
-            prep: "One-Pot Dutch Oven",
-            clinical: "Lycopene & Soluble Fiber",
-            ingredients: [
-              "800g Inghams Turkey Breast Mince (or chicken thigh)",
-              "2 tins (400g) cannellini beans (rinsed & drained)",
-              "2 tins (400g) diced Italian tomatoes or Mutti passata",
-              "2 medium green zucchinis (Odd Bunch, sliced)",
-              "300g mushroom cups (quartered)",
-              "1 large red capsicum (sliced) + 1 brown onion (diced) + 5 cloves garlic",
-              "2 tbsp capers + 1/3 cup kalamata olives + fresh rosemary & oregano",
-              "1 cup chicken bone broth, extra virgin olive oil, sea salt, black pepper"
-            ],
-            method: [
-              "In a large Dutch oven, heat 1 tbsp olive oil. Brown turkey mince 5 mins, transfer to plate.",
-              "Add onion, capsicum, mushrooms; sauté 5 mins until soft. Stir in garlic and herbs 1 min.",
-              "Pour in diced tomatoes, cannellini beans, capers, olives, bone broth, and turkey with resting juices.",
-              "Simmer gently covered for 20 mins. Add zucchini half-moons and simmer uncovered 8 mins until tender.",
-              "Serve 2 portions Monday; store remaining 4 portions in glass containers for Tuesday & Wednesday."
-            ]
+            "name": "Chicken Breast, skinless, raw (Coles/Woolworths RSPCA)",
+            "grams": 700,
+            "protein": 157.5,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 10.5,
+            "cals": 735,
+            "source": "FSANZ AFCD F002258 / Pack NIP"
           },
           {
-            id: "c2_opt2",
-            title: "Moroccan Turkey & Chickpea Tagine with Sweet Potato",
-            cuisine: "North African / Moroccan",
-            protein: "44g Protein",
-            carbs: "36g Carbs (10g Fiber)",
-            fat: "14g Fat",
-            cals: "450 kcal",
-            special: "Chickpeas & Sweet Potato Staple",
-            prep: "One-Pot Slow Braise",
-            clinical: "Beta-Carotene & Estrogen Binding",
-            ingredients: [
-              "800g Inghams Turkey Mince or diced Chicken Thighs",
-              "2 tins (400g) chickpeas (rinsed & drained)",
-              "2 tins (400g) crushed Italian tomatoes",
-              "1 medium sweet potato (cubed) + 2 zucchinis + 2 carrots",
-              "1/3 cup green Sicilian olives + fresh coriander",
-              "1 tbsp cumin, 1 tsp cinnamon, 1 tsp turmeric, 1L bone broth"
-            ],
-            method: [
-              "Brown turkey or chicken in Dutch oven with 1 tbsp olive oil; remove to plate.",
-              "Sauté onion, carrots, and sweet potato 5 mins. Stir in cumin, cinnamon, turmeric, and garlic 1 min.",
-              "Pour in crushed tomatoes, bone broth, chickpeas, green olives, and meat. Simmer covered 25 mins.",
-              "Add zucchini half-moons; simmer uncovered 8 mins until sweet potato is fork-tender.",
-              "Garnish with fresh coriander and lemon juice. Serves Mon, Tue, Wed."
-            ]
+            "name": "Jasmine Fragrant White Rice, dry (SunRice)",
+            "grams": 190,
+            "protein": 14.25,
+            "carbs": 150.1,
+            "fiber": 3.42,
+            "fat": 1.52,
+            "cals": 674.5,
+            "source": "SunRice Pack NIP"
           },
           {
-            id: "c2_opt3",
-            title: "French Provençal Chicken & White Butter Bean Stew",
-            cuisine: "French Provençal",
-            protein: "42g Protein",
-            carbs: "30g Carbs (9g Fiber)",
-            fat: "14g Fat",
-            cals: "420 kcal",
-            special: "RSPCA Chicken Breast Fillets",
-            prep: "One-Pot Braise",
-            clinical: "Fennel & Leek Prebiotics",
-            ingredients: [
-              "800g RSPCA Chicken Thigh or Breast (cut into chunks)",
-              "2 tins (400g) butter beans or cannellini beans",
-              "2 leeks (sliced) + 2 zucchinis + 2 celery stalks",
-              "2 tbsp Dijon mustard + 1/2 cup pitted olives + fresh thyme",
-              "1L chicken bone broth, olive oil, lemon juice, sea salt"
-            ],
-            method: [
-              "Sear chicken chunks in Dutch oven with olive oil and thyme (6 mins). Set aside.",
-              "Sauté leeks and celery 6 mins until sweet and tender. Add garlic and thyme 1 min.",
-              "Stir in Dijon mustard, chicken bone broth, butter beans, olives, and chicken.",
-              "Simmer covered 20 mins. Add zucchini; simmer uncovered 8 mins.",
-              "Stir in fresh lemon juice. Reheats beautifully across 3 days."
-            ]
+            "name": "Black Beans, canned, rinsed & drained",
+            "grams": 240,
+            "protein": 17.28,
+            "carbs": 38.4,
+            "fiber": 15.6,
+            "fat": 1.92,
+            "cals": 273.59999999999997,
+            "source": "Edgell / Coles Brand NIP"
+          },
+          {
+            "name": "Red Capsicum, raw",
+            "grams": 250,
+            "protein": 2.5,
+            "carbs": 11.25,
+            "fiber": 4.5,
+            "fat": 0.5,
+            "cals": 65,
+            "source": "FSANZ AFCD F001550"
+          },
+          {
+            "name": "Sweet Corn kernels, canned drained",
+            "grams": 120,
+            "protein": 3.36,
+            "carbs": 17.4,
+            "fiber": 3,
+            "fat": 1.32,
+            "cals": 96,
+            "source": "Woolies NIP"
+          },
+          {
+            "name": "Chicken Bone Broth (Woolworths/Tonrick)",
+            "grams": 500,
+            "protein": 18,
+            "carbs": 2,
+            "fiber": 0,
+            "fat": 1.5,
+            "cals": 95,
+            "source": "Macro Bone Broth NIP"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 14,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 12.88,
+            "cals": 115.92000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
           }
-        ]
+        ],
+        "servings": 4
       },
-      container_3: {
-        name: "Container 3: Thu–Fri Seafood & Brassica",
-        profile: "Oily Fish & Warm Lentils (4 Servings: 2 people x 2 nights)",
-        options: [
+      {
+        "id": "c1_opt3",
+        "title": "Tuscan Herb Chicken, Mushroom & Cannellini Glass Bake",
+        "cuisine": "Italian Tuscan",
+        "protein": "56.8g Protein",
+        "carbs": "39g Carbs (8.7g Fiber)",
+        "fat": "9.5g Fat",
+        "cals": "490 kcal",
+        "special": "Mushroom Cups 14x in Receipts",
+        "prep": "Zero Pots / Pans",
+        "clinical": "Gut Biome Prebiotics",
+        "ingredients": [
+          "700g Woolworths/Coles RSPCA Chicken Breast Fillets (4 x 175g portions)",
+          "1 cup raw white jasmine rice (1/4 cup per container)",
+          "1 tin (400g) cannellini beans (rinsed & drained, 1/3 cup per container)",
+          "300g mushroom cups (sliced) + 1 medium zucchini (diced)",
+          "1/2 cup Italian passata / crushed tomatoes",
+          "500ml chicken bone broth",
+          "Dried rosemary, dried oregano, garlic, extra virgin olive oil, sea salt"
+        ],
+        "method": [
+          "Divide raw rice, cannellini beans, sliced mushrooms, and zucchini across 4 glass containers.",
+          "Place 175g seasoned raw chicken breast on top in each container.",
+          "Boil bone broth with tomato passata, minced garlic, rosemary, and oregano. Pour 1/2 cup hot broth into each container.",
+          "Cover tightly with foil and bake at 180°C for 35 minutes.",
+          "Uncover and bake 10 minutes until chicken is lightly browned and rice is tender.",
+          "Drizzle with cold extra virgin olive oil before refrigerating."
+        ],
+        "auditBreakdown": [
           {
-            id: "c3_opt1",
-            title: "Tasmanian Salmon & Turmeric Lentils with Charred Broccolini",
-            cuisine: "Tasmanian Coastal",
-            protein: "45g Protein",
-            carbs: "30g Carbs (10g Fiber)",
-            fat: "22g Fat",
-            cals: "510 kcal",
-            special: "Woolies Tasmanian Salmon on Special",
-            prep: "Sheet Pan + Skillet",
-            clinical: "High Marine EPA/DHA + Cruciferous DIM",
-            ingredients: [
-              "4 x 160g Tasmanian Salmon Fillets (skin-on)",
-              "2 bunches broccolini (trimmed)",
-              "1.5 cups dry brown lentils (or 2 tins)",
-              "2 carrots + 2 celery stalks + 1 onion + fresh ginger & turmeric",
-              "1 lemon + 1 Hass avocado + extra virgin olive oil, 750ml broth"
-            ],
-            method: [
-              "Lentils: Sauté onion, carrots, celery in 1 tbsp olive oil 6 mins. Add garlic, ginger, turmeric. Add lentils and broth; simmer covered 25 mins until tender. Stir in lemon juice.",
-              "Broccolini: Toss with 1 tbsp olive oil and salt. Roast at 210°C for 12 mins until charred and tender.",
-              "Salmon: Pan-sear skin-down in hot skillet 4 mins until crisp; flip and cook 2 mins.",
-              "Plate 2 portions Thursday with avocado. Pack 2 for Friday (reheat lentils hot; warm salmon gently at 50% power for 60s)."
-            ]
+            "name": "Chicken Breast, skinless, raw (Coles/Woolworths RSPCA)",
+            "grams": 700,
+            "protein": 157.5,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 10.5,
+            "cals": 735,
+            "source": "FSANZ AFCD F002258 / Pack NIP"
           },
           {
-            id: "c3_opt2",
-            title: "Barramundi with Garlic Cannellini & Mediterranean Salsa",
-            cuisine: "Australian Coastal",
-            protein: "44g Protein",
-            carbs: "28g Carbs (9g Fiber)",
-            fat: "16g Fat",
-            cals: "430 kcal",
-            special: "Cone Bay Barramundi Fillets",
-            prep: "Quick Skillet & Roast",
-            clinical: "Oleocanthal & Clean Marine Protein",
-            ingredients: [
-              "4 x 180g Australian Barramundi Fillets (skin-on)",
-              "2 tins (400g) cannellini beans",
-              "1 bunch asparagus OR 300g Brussels sprouts (or broccolini)",
-              "1 punnet cherry tomatoes + 1/2 red onion + fresh parsley + capers",
-              "1 lemon + 1 Hass avocado + extra virgin olive oil, garlic"
-            ],
-            method: [
-              "Salsa: Toss diced cherry tomatoes, red onion, capers, parsley, lemon zest, and olive oil.",
-              "Beans: Sauté minced garlic in olive oil 1 min. Add cannellini beans and 3 tbsp water; warm 4 mins and crush lightly.",
-              "Vegetables: Toss asparagus or Brussels sprouts with olive oil; roast at 200°C for 12 mins.",
-              "Barramundi: Score skin, season with salt. Pan-sear skin-down 4 mins until crispy, flip 2 mins.",
-              "Plate fish over warm cannellini beans and top with Mediterranean salsa."
-            ]
+            "name": "Quinoa, raw tricolour (Macro Organic)",
+            "grams": 180,
+            "protein": 24.3,
+            "carbs": 111.60000000000001,
+            "fiber": 12.6,
+            "fat": 10.44,
+            "cals": 669.6,
+            "source": "Macro Organic Pack NIP"
           },
           {
-            id: "c3_opt3",
-            title: "Tamari-Ginger Glazed Salmon with Edamame Lentils & Bok Choy",
-            cuisine: "East-Asian Anti-Inflammatory",
-            protein: "46g Protein",
-            carbs: "26g Carbs (8g Fiber)",
-            fat: "20g Fat",
-            cals: "480 kcal",
-            special: "Tasmanian Salmon 4-Pack",
-            prep: "Skillet & Mash",
-            clinical: "Gingerol & Marine Omega-3",
-            ingredients: [
-              "4 x 160g Tasmanian Salmon Fillets",
-              "2 bunches baby bok choy or choy sum (halved)",
-              "1.5 cups brown lentils + 200g frozen edamame beans",
-              "3 cm fresh ginger + 3 cloves garlic + spring onions",
-              "Gluten-free tamari, toasted sesame oil, sesame seeds"
-            ],
-            method: [
-              "Mash: Simmer lentils and edamame with garlic and broth 15 mins; crush coarsely with 1 tsp sesame oil and salt.",
-              "Bok Choy: Flash-fry bok choy in hot skillet with 1 tsp oil and splash of water 3 mins until bright green.",
-              "Salmon: Whisk tamari, ginger, garlic. Brush onto salmon fillets. Pan-sear 3-4 mins per side, glazing frequently.",
-              "Serve glazed salmon over edamame lentil mash with bok choy."
-            ]
+            "name": "Cannellini Beans, canned, rinsed & drained",
+            "grams": 240,
+            "protein": 16.56,
+            "carbs": 34.8,
+            "fiber": 14.879999999999999,
+            "fat": 1.44,
+            "cals": 252,
+            "source": "Coles/Woolies Brand NIP"
+          },
+          {
+            "name": "White Button / Cup Mushrooms, raw",
+            "grams": 300,
+            "protein": 7.5,
+            "carbs": 6,
+            "fiber": 4.5,
+            "fat": 0.6000000000000001,
+            "cals": 66,
+            "source": "FSANZ AFCD F005705"
+          },
+          {
+            "name": "Baby Spinach, fresh raw",
+            "grams": 120,
+            "protein": 3.36,
+            "carbs": 1.68,
+            "fiber": 2.64,
+            "fat": 0.48,
+            "cals": 26.4,
+            "source": "FSANZ AFCD F008323"
+          },
+          {
+            "name": "Chicken Bone Broth (Woolworths/Tonrick)",
+            "grams": 500,
+            "protein": 18,
+            "carbs": 2,
+            "fiber": 0,
+            "fat": 1.5,
+            "cals": 95,
+            "source": "Macro Bone Broth NIP"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 14,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 12.88,
+            "cals": 115.92000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
           }
-        ]
-      },
-      container_4: {
-        name: "Container 4: Sat–Sun Fast Grill & Wraps",
-        profile: "15-min Saturday Grill + Instant Sunday Assembly (4 Servings)",
-        options: [
-          {
-            id: "c4_opt1",
-            title: "Grilled Chicken Souvlaki Wraps with Chobani Dill Tzatziki",
-            cuisine: "Greek Souvlaki",
-            protein: "44g Protein",
-            carbs: "32g Carbs (8g Fiber)",
-            fat: "14g Fat",
-            cals: "430 kcal",
-            special: "Chobani 907g & Lower-Carb Wraps Deals",
-            prep: "15-min Fast Grill",
-            clinical: "A2 Protein Fermented Dairy",
-            ingredients: [
-              "700g RSPCA Chicken Breast (sliced into strips)",
-              "8 x Woolworths Lower Carb Wholemeal Wraps",
-              "1 cup Chobani Plain Non-Fat Greek Yogurt",
-              "1 Lebanese cucumber (grated & squeezed dry) + 1 clove garlic + fresh dill",
-              "1 punnet cherry tomatoes + 1/2 red onion + lettuce + 1 avocado",
-              "Dried oregano, garlic powder, paprika, extra virgin olive oil, lemon"
-            ],
-            method: [
-              "Tzatziki: Mix Chobani Greek yogurt, squeezed cucumber, garlic, lemon juice, salt, and dill.",
-              "Grill: Toss chicken with olive oil, oregano, garlic powder, paprika, salt. Pan-sear high heat 6-8 mins until charred.",
-              "Saturday Dinner: Warm 4 wraps. Fill with lettuce, tomatoes, onion, avocado, grilled chicken, and 2 tbsp tzatziki.",
-              "Sunday Dinner: Leftover grilled chicken and tzatziki assemble into fresh wraps in 3 mins with zero cooking."
-            ]
-          },
-          {
-            id: "c4_opt2",
-            title: "Skillet Australian Tiger Prawn Wraps with Purple Cabbage Slaw",
-            cuisine: "Coastal Baja / Mexican",
-            protein: "42g Protein",
-            carbs: "30g Carbs (9g Fiber)",
-            fat: "12g Fat",
-            cals: "400 kcal",
-            special: "Wild Prawns & Purple Cabbage",
-            prep: "8-min Flash Sear",
-            clinical: "Astaxanthin Antioxidants",
-            ingredients: [
-              "600g raw peeled Australian Tiger Prawns",
-              "8 x Lower Carb Wholemeal Wraps",
-              "1/4 head purple cabbage (finely shredded) + 1 grated carrot",
-              "1 fresh lime + fresh coriander + 1 avocado",
-              "1 cup Chobani Greek Yogurt + smoked paprika + cumin + garlic"
-            ],
-            method: [
-              "Slaw: Toss shredded purple cabbage, carrot, coriander, lime juice, and salt.",
-              "Lime Crema: Whisk Chobani yogurt with lime juice, garlic, and pinch of salt.",
-              "Prawns: Season prawns with olive oil, paprika, cumin, garlic, and salt. Flash-fry in blazing hot skillet 2-3 mins until pink.",
-              "Assemble Saturday: Fill warm wraps with slaw, avocado, sizzling prawns, and lime crema.",
-              "Sunday: Store cooked prawns and slaw separately. Assemble cold or gently warmed in 3 mins."
-            ]
-          },
-          {
-            id: "c4_opt3",
-            title: "Spiced Turkey/Beef Kofta Wraps with Minted Chobani Tahini",
-            cuisine: "Middle Eastern Kofta",
-            protein: "45g Protein",
-            carbs: "31g Carbs (8g Fiber)",
-            fat: "15g Fat",
-            cals: "440 kcal",
-            special: "Ingham's Turkey Mince Deal",
-            prep: "12-min Skillet Cook",
-            clinical: "Sesame Lignans & Herbs",
-            ingredients: [
-              "700g Inghams Turkey Mince or Lean Grass-Fed Beef Mince",
-              "8 x Lower Carb Wholemeal Wraps",
-              "1 cup Chobani Plain Greek Yogurt + 2 tbsp hulled tahini + fresh mint",
-              "1 Lebanese cucumber + 1 punnet cherry tomatoes + 1 red onion + avocado",
-              "1 tbsp cumin, 1 tbsp coriander, 1/2 tsp cinnamon, garlic powder, olive oil"
-            ],
-            method: [
-              "Form Koftas: Mix mince with cumin, coriander, cinnamon, garlic powder, fresh mint, salt. Shape into 12 oval patties.",
-              "Cook: Pan-sear koftas in skillet with olive oil 4-5 mins per side until browned and cooked through.",
-              "Sauce: Whisk Chobani yogurt, tahini, lemon juice, chopped mint, and warm water.",
-              "Saturday Dinner: Assemble wraps with salad greens, cucumber, tomato, avocado, 3 koftas per wrap, and sauce.",
-              "Sunday Dinner: Warm leftover koftas 60s and assemble fresh wraps in 3 mins."
-            ]
-          }
-        ]
+        ],
+        "servings": 4
       }
-    };
+    ]
+  },
+  "container_2": {
+    "name": "Container 2: Mon–Wed Dinner Stew",
+    "profile": "One-Pot Braise (6 Servings: 2 people x 3 nights)",
+    "options": [
+      {
+        "id": "c2_opt1",
+        "title": "Mediterranean Turkey & Cannellini Bean Cacciatore",
+        "cuisine": "Italian Tuscan",
+        "protein": "38.9g Protein",
+        "carbs": "19.5g Carbs (8.5g Fiber)",
+        "fat": "10.2g Fat",
+        "cals": "343 kcal",
+        "special": "Ingham's Turkey Mince on Special",
+        "prep": "One-Pot Dutch Oven",
+        "clinical": "Lycopene & Soluble Fiber",
+        "ingredients": [
+          "800g Inghams Turkey Breast Mince (or chicken thigh)",
+          "2 tins (400g) cannellini beans (rinsed & drained)",
+          "2 tins (400g) diced Italian tomatoes or Mutti passata",
+          "2 medium green zucchinis (Odd Bunch, sliced)",
+          "300g mushroom cups (quartered)",
+          "1 large red capsicum (sliced) + 1 brown onion (diced) + 5 cloves garlic",
+          "2 tbsp capers + 1/3 cup kalamata olives + fresh rosemary & oregano",
+          "1 cup chicken bone broth, extra virgin olive oil, sea salt, black pepper"
+        ],
+        "method": [
+          "In a large Dutch oven, heat 1 tbsp olive oil. Brown turkey mince 5 mins, transfer to plate.",
+          "Add onion, capsicum, mushrooms; sauté 5 mins until soft. Stir in garlic and herbs 1 min.",
+          "Pour in diced tomatoes, cannellini beans, capers, olives, bone broth, and turkey with resting juices.",
+          "Simmer gently covered for 20 mins. Add zucchini half-moons and simmer uncovered 8 mins until tender.",
+          "Serve 2 portions Monday; store remaining 4 portions in glass containers for Tuesday & Wednesday."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Turkey Breast Mince, raw (Ingham's / Woolworths)",
+            "grams": 800,
+            "protein": 174.4,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 20,
+            "cals": 880,
+            "source": "Ingham's NIP / FSANZ F008901"
+          },
+          {
+            "name": "Cannellini Beans, canned, rinsed & drained",
+            "grams": 480,
+            "protein": 33.12,
+            "carbs": 69.6,
+            "fiber": 29.759999999999998,
+            "fat": 2.88,
+            "cals": 504,
+            "source": "Coles/Woolies Brand NIP"
+          },
+          {
+            "name": "Canned Diced / Crushed Italian Tomatoes",
+            "grams": 800,
+            "protein": 9.6,
+            "carbs": 30.4,
+            "fiber": 8.8,
+            "fat": 1.6,
+            "cals": 192,
+            "source": "Mutti / Woolies Italian NIP"
+          },
+          {
+            "name": "White Button / Cup Mushrooms, raw",
+            "grams": 400,
+            "protein": 10,
+            "carbs": 8,
+            "fiber": 6,
+            "fat": 0.8,
+            "cals": 88,
+            "source": "FSANZ AFCD F005705"
+          },
+          {
+            "name": "Zucchini, raw unpeeled",
+            "grams": 400,
+            "protein": 5.6,
+            "carbs": 8.4,
+            "fiber": 4.4,
+            "fat": 0.8,
+            "cals": 64,
+            "source": "FSANZ AFCD F009581"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 28,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 25.76,
+            "cals": 231.84000000000003,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          },
+          {
+            "name": "Kalamata Olives, pitted",
+            "grams": 60,
+            "protein": 0.66,
+            "carbs": 0.72,
+            "fiber": 1.92,
+            "fat": 9.6,
+            "cals": 99,
+            "source": "Always Fresh / FSANZ"
+          }
+        ],
+        "servings": 6
+      },
+      {
+        "id": "c2_opt2",
+        "title": "Moroccan Turkey & Chickpea Tagine with Sweet Potato",
+        "cuisine": "North African / Moroccan",
+        "protein": "38.3g Protein",
+        "carbs": "32.7g Carbs (9.3g Fiber)",
+        "fat": "9.4g Fat",
+        "cals": "389 kcal",
+        "special": "Chickpeas & Sweet Potato Staple",
+        "prep": "One-Pot Slow Braise",
+        "clinical": "Beta-Carotene & Estrogen Binding",
+        "ingredients": [
+          "800g Inghams Turkey Mince or diced Chicken Thighs",
+          "2 tins (400g) chickpeas (rinsed & drained)",
+          "2 tins (400g) crushed Italian tomatoes",
+          "1 medium sweet potato (cubed) + 2 zucchinis + 2 carrots",
+          "1/3 cup green Sicilian olives + fresh coriander",
+          "1 tbsp cumin, 1 tsp cinnamon, 1 tsp turmeric, 1L bone broth"
+        ],
+        "method": [
+          "Brown turkey or chicken in Dutch oven with 1 tbsp olive oil; remove to plate.",
+          "Sauté onion, carrots, and sweet potato 5 mins. Stir in cumin, cinnamon, turmeric, and garlic 1 min.",
+          "Pour in crushed tomatoes, bone broth, chickpeas, green olives, and meat. Simmer covered 25 mins.",
+          "Add zucchini half-moons; simmer uncovered 8 mins until sweet potato is fork-tender.",
+          "Garnish with fresh coriander and lemon juice. Serves Mon, Tue, Wed."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Turkey Breast Mince, raw (Ingham's / Woolworths)",
+            "grams": 800,
+            "protein": 174.4,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 20,
+            "cals": 880,
+            "source": "Ingham's NIP / FSANZ F008901"
+          },
+          {
+            "name": "Chickpeas, canned, rinsed & drained",
+            "grams": 480,
+            "protein": 32.64,
+            "carbs": 72.96,
+            "fiber": 27.84,
+            "fat": 7.68,
+            "cals": 556.8,
+            "source": "Coles/Woolies Brand NIP / FSANZ"
+          },
+          {
+            "name": "Gold Sweet Potato, raw peeled",
+            "grams": 500,
+            "protein": 7.5,
+            "carbs": 90,
+            "fiber": 15,
+            "fat": 0.5,
+            "cals": 430,
+            "source": "FSANZ AFCD F008455"
+          },
+          {
+            "name": "Canned Diced / Crushed Italian Tomatoes",
+            "grams": 800,
+            "protein": 9.6,
+            "carbs": 30.4,
+            "fiber": 8.8,
+            "fat": 1.6,
+            "cals": 192,
+            "source": "Mutti / Woolies Italian NIP"
+          },
+          {
+            "name": "Baby Spinach, fresh raw",
+            "grams": 200,
+            "protein": 5.6,
+            "carbs": 2.8,
+            "fiber": 4.4,
+            "fat": 0.8,
+            "cals": 44,
+            "source": "FSANZ AFCD F008323"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 28,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 25.76,
+            "cals": 231.84000000000003,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          }
+        ],
+        "servings": 6
+      },
+      {
+        "id": "c2_opt3",
+        "title": "French Provençal Chicken & White Butter Bean Stew",
+        "cuisine": "French Provençal",
+        "protein": "48.2g Protein",
+        "carbs": "19g Carbs (7.5g Fiber)",
+        "fat": "7.9g Fat",
+        "cals": "359 kcal",
+        "special": "RSPCA Chicken Breast Fillets",
+        "prep": "One-Pot Braise",
+        "clinical": "Fennel & Leek Prebiotics",
+        "ingredients": [
+          "800g RSPCA Chicken Thigh or Breast (cut into chunks)",
+          "2 tins (400g) butter beans or cannellini beans",
+          "2 leeks (sliced) + 2 zucchinis + 2 celery stalks",
+          "2 tbsp Dijon mustard + 1/2 cup pitted olives + fresh thyme",
+          "1L chicken bone broth, olive oil, lemon juice, sea salt"
+        ],
+        "method": [
+          "Sear chicken chunks in Dutch oven with olive oil and thyme (6 mins). Set aside.",
+          "Sauté leeks and celery 6 mins until sweet and tender. Add garlic and thyme 1 min.",
+          "Stir in Dijon mustard, chicken bone broth, butter beans, olives, and chicken.",
+          "Simmer covered 20 mins. Add zucchini; simmer uncovered 8 mins.",
+          "Stir in fresh lemon juice. Reheats beautifully across 3 days."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Chicken Breast, skinless, raw (Coles/Woolworths RSPCA)",
+            "grams": 1000,
+            "protein": 225,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 15,
+            "cals": 1050,
+            "source": "FSANZ AFCD F002258 / Pack NIP"
+          },
+          {
+            "name": "Butter Beans, canned, rinsed & drained",
+            "grams": 480,
+            "protein": 31.2,
+            "carbs": 67.2,
+            "fiber": 26.4,
+            "fat": 2.88,
+            "cals": 489.59999999999997,
+            "source": "Woolies Brand NIP"
+          },
+          {
+            "name": "Canned Diced / Crushed Italian Tomatoes",
+            "grams": 800,
+            "protein": 9.6,
+            "carbs": 30.4,
+            "fiber": 8.8,
+            "fat": 1.6,
+            "cals": 192,
+            "source": "Mutti / Woolies Italian NIP"
+          },
+          {
+            "name": "Zucchini, raw unpeeled",
+            "grams": 400,
+            "protein": 5.6,
+            "carbs": 8.4,
+            "fiber": 4.4,
+            "fat": 0.8,
+            "cals": 64,
+            "source": "FSANZ AFCD F009581"
+          },
+          {
+            "name": "White Button / Cup Mushrooms, raw",
+            "grams": 350,
+            "protein": 8.75,
+            "carbs": 7,
+            "fiber": 5.25,
+            "fat": 0.7000000000000001,
+            "cals": 77,
+            "source": "FSANZ AFCD F005705"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 28,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 25.76,
+            "cals": 231.84000000000003,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          },
+          {
+            "name": "Chicken Bone Broth (Woolworths/Tonrick)",
+            "grams": 250,
+            "protein": 9,
+            "carbs": 1,
+            "fiber": 0,
+            "fat": 0.75,
+            "cals": 47.5,
+            "source": "Macro Bone Broth NIP"
+          }
+        ],
+        "servings": 6
+      }
+    ]
+  },
+  "container_3": {
+    "name": "Container 3: Thu–Fri Seafood & Brassica",
+    "profile": "Oily Fish & Warm Lentils (4 Servings: 2 people x 2 nights)",
+    "options": [
+      {
+        "id": "c3_opt1",
+        "title": "Tasmanian Salmon & Turmeric Lentils with Charred Broccolini",
+        "cuisine": "Tasmanian Coastal",
+        "protein": "35.3g Protein",
+        "carbs": "19.9g Carbs (8.5g Fiber)",
+        "fat": "20.6g Fat",
+        "cals": "425 kcal",
+        "special": "Woolies Tasmanian Salmon on Special",
+        "prep": "Sheet Pan + Skillet",
+        "clinical": "High Marine EPA/DHA + Cruciferous DIM",
+        "ingredients": [
+          "4 x 160g Tasmanian Salmon Fillets (skin-on)",
+          "2 bunches broccolini (trimmed)",
+          "1.5 cups dry brown lentils (or 2 tins)",
+          "2 carrots + 2 celery stalks + 1 onion + fresh ginger & turmeric",
+          "1 lemon + 1 Hass avocado + extra virgin olive oil, 750ml broth"
+        ],
+        "method": [
+          "Lentils: Sauté onion, carrots, celery in 1 tbsp olive oil 6 mins. Add garlic, ginger, turmeric. Add lentils and broth; simmer covered 25 mins until tender. Stir in lemon juice.",
+          "Broccolini: Toss with 1 tbsp olive oil and salt. Roast at 210°C for 12 mins until charred and tender.",
+          "Salmon: Pan-sear skin-down in hot skillet 4 mins until crisp; flip and cook 2 mins.",
+          "Plate 2 portions Thursday with avocado. Pack 2 for Friday (reheat lentils hot; warm salmon gently at 50% power for 60s)."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Atlantic Salmon, raw skin-on fillet (Woolworths/Tassal)",
+            "grams": 460,
+            "protein": 93.83999999999999,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 59.8,
+            "cals": 929.1999999999999,
+            "source": "FSANZ AFCD F007551 / Tassal NIP"
+          },
+          {
+            "name": "Brown Lentils, canned, rinsed & drained",
+            "grams": 480,
+            "protein": 33.6,
+            "carbs": 71.04,
+            "fiber": 21.599999999999998,
+            "fat": 2.4,
+            "cals": 489.59999999999997,
+            "source": "Woolies / FSANZ F004860"
+          },
+          {
+            "name": "Broccoli / Broccolini, raw",
+            "grams": 300,
+            "protein": 9.600000000000001,
+            "carbs": 6.6000000000000005,
+            "fiber": 9,
+            "fat": 1.2000000000000002,
+            "cals": 84,
+            "source": "FSANZ AFCD F001155"
+          },
+          {
+            "name": "Baby Spinach, fresh raw",
+            "grams": 150,
+            "protein": 4.199999999999999,
+            "carbs": 2.0999999999999996,
+            "fiber": 3.3000000000000003,
+            "fat": 0.6000000000000001,
+            "cals": 33,
+            "source": "FSANZ AFCD F008323"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 20,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 18.400000000000002,
+            "cals": 165.60000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          }
+        ],
+        "servings": 4
+      },
+      {
+        "id": "c3_opt2",
+        "title": "Barramundi with Garlic Cannellini & Mediterranean Salsa",
+        "cuisine": "Australian Coastal",
+        "protein": "39g Protein",
+        "carbs": "20.6g Carbs (9.4g Fiber)",
+        "fat": "12.8g Fat",
+        "cals": "373 kcal",
+        "special": "Cone Bay Barramundi Fillets",
+        "prep": "Quick Skillet & Roast",
+        "clinical": "Oleocanthal & Clean Marine Protein",
+        "ingredients": [
+          "4 x 180g Australian Barramundi Fillets (skin-on)",
+          "2 tins (400g) cannellini beans",
+          "1 bunch asparagus OR 300g Brussels sprouts (or broccolini)",
+          "1 punnet cherry tomatoes + 1/2 red onion + fresh parsley + capers",
+          "1 lemon + 1 Hass avocado + extra virgin olive oil, garlic"
+        ],
+        "method": [
+          "Salsa: Toss diced cherry tomatoes, red onion, capers, parsley, lemon zest, and olive oil.",
+          "Beans: Sauté minced garlic in olive oil 1 min. Add cannellini beans and 3 tbsp water; warm 4 mins and crush lightly.",
+          "Vegetables: Toss asparagus or Brussels sprouts with olive oil; roast at 200°C for 12 mins.",
+          "Barramundi: Score skin, season with salt. Pan-sear skin-down 4 mins until crispy, flip 2 mins.",
+          "Plate fish over warm cannellini beans and top with Mediterranean salsa."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Barramundi Fillet, raw skin-on (Coles/Woolworths)",
+            "grams": 500,
+            "protein": 100,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 12.5,
+            "cals": 520,
+            "source": "FSANZ AFCD F000492"
+          },
+          {
+            "name": "Brown Lentils, canned, rinsed & drained",
+            "grams": 480,
+            "protein": 33.6,
+            "carbs": 71.04,
+            "fiber": 21.599999999999998,
+            "fat": 2.4,
+            "cals": 489.59999999999997,
+            "source": "Woolies / FSANZ F004860"
+          },
+          {
+            "name": "Macro Organic Unhulled Tahini",
+            "grams": 40,
+            "protein": 8.8,
+            "carbs": 2.6,
+            "fiber": 3.6,
+            "fat": 21.6,
+            "cals": 248,
+            "source": "Macro Tahini NIP"
+          },
+          {
+            "name": "Broccoli / Broccolini, raw",
+            "grams": 300,
+            "protein": 9.600000000000001,
+            "carbs": 6.6000000000000005,
+            "fiber": 9,
+            "fat": 1.2000000000000002,
+            "cals": 84,
+            "source": "FSANZ AFCD F001155"
+          },
+          {
+            "name": "Baby Spinach, fresh raw",
+            "grams": 150,
+            "protein": 4.199999999999999,
+            "carbs": 2.0999999999999996,
+            "fiber": 3.3000000000000003,
+            "fat": 0.6000000000000001,
+            "cals": 33,
+            "source": "FSANZ AFCD F008323"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 14,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 12.88,
+            "cals": 115.92000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          }
+        ],
+        "servings": 4
+      },
+      {
+        "id": "c3_opt3",
+        "title": "Tamari-Ginger Glazed Salmon with Edamame Lentils & Bok Choy",
+        "cuisine": "East-Asian Anti-Inflammatory",
+        "protein": "38.5g Protein",
+        "carbs": "24.3g Carbs (10.9g Fiber)",
+        "fat": "8.6g Fat",
+        "cals": "355 kcal",
+        "special": "Tasmanian Salmon 4-Pack",
+        "prep": "Skillet & Mash",
+        "clinical": "Gingerol & Marine Omega-3",
+        "ingredients": [
+          "4 x 160g Tasmanian Salmon Fillets",
+          "2 bunches baby bok choy or choy sum (halved)",
+          "1.5 cups brown lentils + 200g frozen edamame beans",
+          "3 cm fresh ginger + 3 cloves garlic + spring onions",
+          "Gluten-free tamari, toasted sesame oil, sesame seeds"
+        ],
+        "method": [
+          "Mash: Simmer lentils and edamame with garlic and broth 15 mins; crush coarsely with 1 tsp sesame oil and salt.",
+          "Bok Choy: Flash-fry bok choy in hot skillet with 1 tsp oil and splash of water 3 mins until bright green.",
+          "Salmon: Whisk tamari, ginger, garlic. Brush onto salmon fillets. Pan-sear 3-4 mins per side, glazing frequently.",
+          "Serve glazed salmon over edamame lentil mash with bok choy."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Cod / White Fish Fillets, raw",
+            "grams": 600,
+            "protein": 108,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 4.800000000000001,
+            "cals": 492,
+            "source": "FSANZ AFCD F003112"
+          },
+          {
+            "name": "Cannellini Beans, canned, rinsed & drained",
+            "grams": 480,
+            "protein": 33.12,
+            "carbs": 69.6,
+            "fiber": 29.759999999999998,
+            "fat": 2.88,
+            "cals": 504,
+            "source": "Coles/Woolies Brand NIP"
+          },
+          {
+            "name": "Canned Diced / Crushed Italian Tomatoes",
+            "grams": 400,
+            "protein": 4.8,
+            "carbs": 15.2,
+            "fiber": 4.4,
+            "fat": 0.8,
+            "cals": 96,
+            "source": "Mutti / Woolies Italian NIP"
+          },
+          {
+            "name": "Red Capsicum, raw",
+            "grams": 200,
+            "protein": 2,
+            "carbs": 9,
+            "fiber": 3.6,
+            "fat": 0.4,
+            "cals": 52,
+            "source": "FSANZ AFCD F001550"
+          },
+          {
+            "name": "Baby Spinach, fresh raw",
+            "grams": 200,
+            "protein": 5.6,
+            "carbs": 2.8,
+            "fiber": 4.4,
+            "fat": 0.8,
+            "cals": 44,
+            "source": "FSANZ AFCD F008323"
+          },
+          {
+            "name": "Kalamata Olives, pitted",
+            "grams": 40,
+            "protein": 0.44000000000000006,
+            "carbs": 0.48,
+            "fiber": 1.2800000000000002,
+            "fat": 6.4,
+            "cals": 66,
+            "source": "Always Fresh / FSANZ"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 20,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 18.400000000000002,
+            "cals": 165.60000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          }
+        ],
+        "servings": 4
+      }
+    ]
+  },
+  "container_4": {
+    "name": "Container 4: Sat–Sun Fast Grill & Wraps",
+    "profile": "15-min Saturday Grill + Instant Sunday Assembly (4 Servings)",
+    "options": [
+      {
+        "id": "c4_opt1",
+        "title": "Grilled Chicken Souvlaki Wraps with Chobani Dill Tzatziki",
+        "cuisine": "Greek Souvlaki",
+        "protein": "47.9g Protein",
+        "carbs": "28.4g Carbs (3.4g Fiber)",
+        "fat": "11.9g Fat",
+        "cals": "420 kcal",
+        "special": "Chobani 907g & Lower-Carb Wraps Deals",
+        "prep": "15-min Fast Grill",
+        "clinical": "A2 Protein Fermented Dairy",
+        "ingredients": [
+          "700g RSPCA Chicken Breast (sliced into strips)",
+          "8 x Woolworths Lower Carb Wholemeal Wraps",
+          "1 cup Chobani Plain Non-Fat Greek Yogurt",
+          "1 Lebanese cucumber (grated & squeezed dry) + 1 clove garlic + fresh dill",
+          "1 punnet cherry tomatoes + 1/2 red onion + lettuce + 1 avocado",
+          "Dried oregano, garlic powder, paprika, extra virgin olive oil, lemon"
+        ],
+        "method": [
+          "Tzatziki: Mix Chobani Greek yogurt, squeezed cucumber, garlic, lemon juice, salt, and dill.",
+          "Grill: Toss chicken with olive oil, oregano, garlic powder, paprika, salt. Pan-sear high heat 6-8 mins until charred.",
+          "Saturday Dinner: Warm 4 wraps. Fill with lettuce, tomatoes, onion, avocado, grilled chicken, and 2 tbsp tzatziki.",
+          "Sunday Dinner: Leftover grilled chicken and tzatziki assemble into fresh wraps in 3 mins with zero cooking."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Chicken Breast, skinless, raw (Coles/Woolworths RSPCA)",
+            "grams": 700,
+            "protein": 157.5,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 10.5,
+            "cals": 735,
+            "source": "FSANZ AFCD F002258 / Pack NIP"
+          },
+          {
+            "name": "Simson's / Helga's Gluten-Free Wrap (per 100g ~ 2 wraps)",
+            "grams": 200,
+            "protein": 8.4,
+            "carbs": 96,
+            "fiber": 10.4,
+            "fat": 13.6,
+            "cals": 560,
+            "source": "Simson's / BFree NIP"
+          },
+          {
+            "name": "Chobani Whole Milk Plain Greek Yogurt",
+            "grams": 250,
+            "protein": 23,
+            "carbs": 9.5,
+            "fiber": 0,
+            "fat": 10,
+            "cals": 220,
+            "source": "Chobani 907g Tub NIP"
+          },
+          {
+            "name": "Lebanese Cucumber, fresh unpeeled",
+            "grams": 150,
+            "protein": 1.2000000000000002,
+            "carbs": 2.7,
+            "fiber": 1.2000000000000002,
+            "fat": 0.15000000000000002,
+            "cals": 18,
+            "source": "FSANZ AFCD F003440"
+          },
+          {
+            "name": "Cherry Tomatoes, fresh",
+            "grams": 150,
+            "protein": 1.5,
+            "carbs": 5.25,
+            "fiber": 1.7999999999999998,
+            "fat": 0.30000000000000004,
+            "cals": 30,
+            "source": "FSANZ AFCD F008681"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 14,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 12.88,
+            "cals": 115.92000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          }
+        ],
+        "servings": 4
+      },
+      {
+        "id": "c4_opt2",
+        "title": "Skillet Australian Tiger Prawn Wraps with Purple Cabbage Slaw",
+        "cuisine": "Coastal Baja / Mexican",
+        "protein": "53.6g Protein",
+        "carbs": "38.2g Carbs (9.1g Fiber)",
+        "fat": "15.9g Fat",
+        "cals": "533 kcal",
+        "special": "Wild Prawns & Purple Cabbage",
+        "prep": "8-min Flash Sear",
+        "clinical": "Astaxanthin Antioxidants",
+        "ingredients": [
+          "600g raw peeled Australian Tiger Prawns",
+          "8 x Lower Carb Wholemeal Wraps",
+          "1/4 head purple cabbage (finely shredded) + 1 grated carrot",
+          "1 fresh lime + fresh coriander + 1 avocado",
+          "1 cup Chobani Greek Yogurt + smoked paprika + cumin + garlic"
+        ],
+        "method": [
+          "Slaw: Toss shredded purple cabbage, carrot, coriander, lime juice, and salt.",
+          "Lime Crema: Whisk Chobani yogurt with lime juice, garlic, and pinch of salt.",
+          "Prawns: Season prawns with olive oil, paprika, cumin, garlic, and salt. Flash-fry in blazing hot skillet 2-3 mins until pink.",
+          "Assemble Saturday: Fill warm wraps with slaw, avocado, sizzling prawns, and lime crema.",
+          "Sunday: Store cooked prawns and slaw separately. Assemble cold or gently warmed in 3 mins."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Chicken Breast, skinless, raw (Coles/Woolworths RSPCA)",
+            "grams": 700,
+            "protein": 157.5,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 10.5,
+            "cals": 735,
+            "source": "FSANZ AFCD F002258 / Pack NIP"
+          },
+          {
+            "name": "Black Beans, canned, rinsed & drained",
+            "grams": 240,
+            "protein": 17.28,
+            "carbs": 38.4,
+            "fiber": 15.6,
+            "fat": 1.92,
+            "cals": 273.59999999999997,
+            "source": "Edgell / Coles Brand NIP"
+          },
+          {
+            "name": "Quinoa, raw tricolour (Macro Organic)",
+            "grams": 160,
+            "protein": 21.6,
+            "carbs": 99.2,
+            "fiber": 11.200000000000001,
+            "fat": 9.28,
+            "cals": 595.2,
+            "source": "Macro Organic Pack NIP"
+          },
+          {
+            "name": "Hass Avocado, fresh flesh",
+            "grams": 150,
+            "protein": 2.4000000000000004,
+            "carbs": 2.7,
+            "fiber": 7.199999999999999,
+            "fat": 22.5,
+            "cals": 240,
+            "source": "FSANZ AFCD F000216"
+          },
+          {
+            "name": "Cherry Tomatoes, fresh",
+            "grams": 200,
+            "protein": 2,
+            "carbs": 7,
+            "fiber": 2.4,
+            "fat": 0.4,
+            "cals": 40,
+            "source": "FSANZ AFCD F008681"
+          },
+          {
+            "name": "Chobani Whole Milk Plain Greek Yogurt",
+            "grams": 150,
+            "protein": 13.799999999999999,
+            "carbs": 5.699999999999999,
+            "fiber": 0,
+            "fat": 6,
+            "cals": 132,
+            "source": "Chobani 907g Tub NIP"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 14,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 12.88,
+            "cals": 115.92000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          }
+        ],
+        "servings": 4
+      },
+      {
+        "id": "c4_opt3",
+        "title": "Spiced Turkey/Beef Kofta Wraps with Minted Chobani Tahini",
+        "cuisine": "Middle Eastern Kofta",
+        "protein": "39.9g Protein",
+        "carbs": "35.8g Carbs (8.6g Fiber)",
+        "fat": "24.2g Fat",
+        "cals": "539 kcal",
+        "special": "Ingham's Turkey Mince Deal",
+        "prep": "12-min Skillet Cook",
+        "clinical": "Sesame Lignans & Herbs",
+        "ingredients": [
+          "700g Inghams Turkey Mince or Lean Grass-Fed Beef Mince",
+          "8 x Lower Carb Wholemeal Wraps",
+          "1 cup Chobani Plain Greek Yogurt + 2 tbsp hulled tahini + fresh mint",
+          "1 Lebanese cucumber + 1 punnet cherry tomatoes + 1 red onion + avocado",
+          "1 tbsp cumin, 1 tbsp coriander, 1/2 tsp cinnamon, garlic powder, olive oil"
+        ],
+        "method": [
+          "Form Koftas: Mix mince with cumin, coriander, cinnamon, garlic powder, fresh mint, salt. Shape into 12 oval patties.",
+          "Cook: Pan-sear koftas in skillet with olive oil 4-5 mins per side until browned and cooked through.",
+          "Sauce: Whisk Chobani yogurt, tahini, lemon juice, chopped mint, and warm water.",
+          "Saturday Dinner: Assemble wraps with salad greens, cucumber, tomato, avocado, 3 koftas per wrap, and sauce.",
+          "Sunday Dinner: Warm leftover koftas 60s and assemble fresh wraps in 3 mins."
+        ],
+        "auditBreakdown": [
+          {
+            "name": "Macro Organic Firm Tofu (Woolworths)",
+            "grams": 900,
+            "protein": 108,
+            "carbs": 10.799999999999999,
+            "fiber": 16.2,
+            "fat": 49.5,
+            "cals": 954,
+            "source": "Woolworths Macro NIP"
+          },
+          {
+            "name": "Quinoa, raw tricolour (Macro Organic)",
+            "grams": 180,
+            "protein": 24.3,
+            "carbs": 111.60000000000001,
+            "fiber": 12.6,
+            "fat": 10.44,
+            "cals": 669.6,
+            "source": "Macro Organic Pack NIP"
+          },
+          {
+            "name": "Chobani Whole Milk Plain Greek Yogurt",
+            "grams": 250,
+            "protein": 23,
+            "carbs": 9.5,
+            "fiber": 0,
+            "fat": 10,
+            "cals": 220,
+            "source": "Chobani 907g Tub NIP"
+          },
+          {
+            "name": "Lebanese Cucumber, fresh unpeeled",
+            "grams": 200,
+            "protein": 1.6,
+            "carbs": 3.6,
+            "fiber": 1.6,
+            "fat": 0.2,
+            "cals": 24,
+            "source": "FSANZ AFCD F003440"
+          },
+          {
+            "name": "Cherry Tomatoes, fresh",
+            "grams": 200,
+            "protein": 2,
+            "carbs": 7,
+            "fiber": 2.4,
+            "fat": 0.4,
+            "cals": 40,
+            "source": "FSANZ AFCD F008681"
+          },
+          {
+            "name": "Kalamata Olives, pitted",
+            "grams": 50,
+            "protein": 0.55,
+            "carbs": 0.6,
+            "fiber": 1.6,
+            "fat": 8,
+            "cals": 82.5,
+            "source": "Always Fresh / FSANZ"
+          },
+          {
+            "name": "Cobram Estate Extra Virgin Olive Oil",
+            "grams": 20,
+            "protein": 0,
+            "carbs": 0,
+            "fiber": 0,
+            "fat": 18.400000000000002,
+            "cals": 165.60000000000002,
+            "source": "Cobram Estate NIP (100ml = 92g fat)"
+          }
+        ],
+        "servings": 4
+      }
+    ]
+  }
+};
 
     const SPECIALS_STOCKPILES = [
       { store: "Woolworths", name: "Chobani Greek Yoghurt Passion Fruit / Plain 160g-907g", deal: "On Special" },
@@ -2156,8 +3084,62 @@
         <span class="badge" style="background:var(--surface-subtle); color:var(--text-muted);">${meal.cuisine || 'Batch Prep'}</span>
       `;
 
+      // Populate Audit Breakdown Table
+      const auditTbody = document.getElementById("modal-audit-tbody");
+      const auditTfoot = document.getElementById("modal-audit-tfoot");
+      const auditServingsEl = document.getElementById("modal-audit-servings");
+      if (auditServingsEl) auditServingsEl.innerText = meal.servings || 4;
+
+      if (meal.auditBreakdown && auditTbody) {
+        let totP = 0, totC = 0, totFib = 0, totF = 0, totCal = 0, totG = 0;
+        auditTbody.innerHTML = meal.auditBreakdown.map(b => {
+          totP += b.protein;
+          totC += b.carbs;
+          totFib += b.fiber;
+          totF += b.fat;
+          totCal += b.cals;
+          totG += b.grams;
+          return `
+            <tr>
+              <td><strong>${b.name}</strong></td>
+              <td>${b.grams}g</td>
+              <td>${b.protein.toFixed(1)}g</td>
+              <td>${b.carbs.toFixed(1)}g</td>
+              <td>${b.fiber.toFixed(1)}g</td>
+              <td>${b.fat.toFixed(1)}g</td>
+              <td>${Math.round(b.cals)}</td>
+              <td style="color:var(--text-muted); font-size:10px;">${b.source}</td>
+            </tr>
+          `;
+        }).join("");
+
+        const serv = meal.servings || 4;
+        auditTfoot.innerHTML = `
+          <tr>
+            <td><strong>Batch Total (${serv} Servings)</strong></td>
+            <td><strong>${totG}g</strong></td>
+            <td><strong>${totP.toFixed(1)}g</strong></td>
+            <td><strong>${totC.toFixed(1)}g</strong></td>
+            <td><strong>${totFib.toFixed(1)}g</strong></td>
+            <td><strong>${totF.toFixed(1)}g</strong></td>
+            <td><strong>${Math.round(totCal)}</strong></td>
+            <td>—</td>
+          </tr>
+          <tr style="background:var(--olive-light); color:var(--olive-dark);">
+            <td><strong>Per Serving (÷ ${serv})</strong></td>
+            <td><strong>${Math.round(totG / serv)}g</strong></td>
+            <td><strong style="color:var(--olive);">${(totP / serv).toFixed(1)}g</strong></td>
+            <td><strong>${(totC / serv).toFixed(1)}g</strong></td>
+            <td><strong>${(totFib / serv).toFixed(1)}g</strong></td>
+            <td><strong>${(totF / serv).toFixed(1)}g</strong></td>
+            <td><strong>${Math.round(totCal / serv)} kcal</strong></td>
+            <td style="font-weight:600;">✓ Calculated</td>
+          </tr>
+        `;
+      }
+
       // Ingredients
-      const ingList = document.getElementById('modal-ingredients-list');
+      const ingList = document.getElementById("modal-ingredients-list");
       ingList.innerHTML = meal.ingredients.map(ing => `<li>${ing}</li>`).join('');
 
       // Method
