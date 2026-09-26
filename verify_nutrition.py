@@ -406,12 +406,12 @@ RECIPES = [
 ]
 
 
-# 12 Recipes tailored for Alison: Age 36, Mild Deficit (~350-400 kcal) & Anti-Inflammatory Endo Balance
+# 12 Recipes tailored for Mild Deficit & Anti-Inflammatory Endo Balance (~350-400 kcal) & Anti-Inflammatory Endo Balance
 # Preserves high dietary fiber (6-10g/meal) for enterohepatic estrogen clearance and high protein (35-44g)
-ALISON_DEFICIT_RECIPES = [
+MILD_DEFICIT_RECIPES = [
     {
         "id": "c1_opt1",
-        "name": "Greek Lemon-Oregano Chicken, Chickpea & Rice Glass Bake (Alison Deficit)",
+        "name": "Greek Lemon-Oregano Chicken, Chickpea & Rice Glass Bake (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Use 2 tbsp dry jasmine rice (25g) instead of 1/4 cup, and 140g raw chicken breast. Keep full 1/3 cup chickpeas and bone broth for enterohepatic estrogen binding.",
         "ingredients": [
@@ -427,7 +427,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c1_opt2",
-        "name": "Smoky Chipotle Chicken, Black Bean & Rice Glass Bake (Alison Deficit)",
+        "name": "Smoky Chipotle Chicken, Black Bean & Rice Glass Bake (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Use 2 tbsp dry jasmine rice (25g) and 140g raw chicken breast. Keep full black beans and capsicum for phase II hepatic support.",
         "ingredients": [
@@ -442,7 +442,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c1_opt3",
-        "name": "Tuscan Herb Chicken, Mushroom & Cannellini Glass Bake (Alison Deficit)",
+        "name": "Tuscan Herb Chicken, Mushroom & Cannellini Glass Bake (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Use 2 tbsp dry quinoa (25g) and 140g raw chicken breast. Keep full cannellini beans and double mushrooms for gut biome prebiotics.",
         "ingredients": [
@@ -457,7 +457,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c2_opt1",
-        "name": "Mediterranean Turkey & Cannellini Bean Cacciatore (Alison Deficit)",
+        "name": "Mediterranean Turkey & Cannellini Bean Cacciatore (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Ladle a 260g bowl (approx 3/4 cup). Rich lycopene & cannellini soluble fiber base without heavy carbs.",
         "ingredients": [
@@ -472,7 +472,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c2_opt2",
-        "name": "Moroccan Turkey & Chickpea Tagine with Sweet Potato (Alison Deficit)",
+        "name": "Moroccan Turkey & Chickpea Tagine with Sweet Potato (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Ladle a 270g bowl with moderate sweet potato cubes. High beta-carotene and prebiotic fiber.",
         "ingredients": [
@@ -486,7 +486,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c2_opt3",
-        "name": "French Provençal Chicken & White Butter Bean Stew (Alison Deficit)",
+        "name": "French Provençal Chicken & White Butter Bean Stew (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Ladle a 250g bowl with 135g diced chicken breast and white butter beans. Deep leek/fennel aromatics.",
         "ingredients": [
@@ -501,7 +501,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c3_opt1",
-        "name": "Crispy Tasmanian Salmon & Turmeric Lentils with Charred Broccolini (Alison Deficit)",
+        "name": "Crispy Tasmanian Salmon & Turmeric Lentils with Charred Broccolini (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Serve with a 120g salmon fillet (instead of 150g). Keep full portion of turmeric lentils and charred broccolini for EPA/DHA + DIM.",
         "ingredients": [
@@ -514,7 +514,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c3_opt2",
-        "name": "Barramundi Fillets with Lemon Tahini Lentils & Sautéed Greens (Alison Deficit)",
+        "name": "Barramundi Fillets with Lemon Tahini Lentils & Sautéed Greens (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Serve with a 130g barramundi fillet, 1 tsp tahini drizzle, and full greens.",
         "ingredients": [
@@ -528,7 +528,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c3_opt3",
-        "name": "Spanish Paprika Cod & Cannellini Bean Skillet with Spinach (Alison Deficit)",
+        "name": "Spanish Paprika Cod & Cannellini Bean Skillet with Spinach (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Serve with a 150g cod fillet and cannellini bean skillet base. High protein density with minimal calories.",
         "ingredients": [
@@ -543,7 +543,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c4_opt1",
-        "name": "Grilled Spiced Chicken Souvlaki Wraps with Chobani Dill Tzatziki (Alison Deficit)",
+        "name": "Grilled Spiced Chicken Souvlaki Wraps with Chobani Dill Tzatziki (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Assemble 1 gluten-free wrap with 140g spiced chicken breast, 2 tbsp Chobani tzatziki, and generous cucumber/tomato salad.",
         "ingredients": [
@@ -557,7 +557,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c4_opt2",
-        "name": "Smoky Paprika Chicken & Black Bean Burrito Bowls with Avocado (Alison Deficit)",
+        "name": "Smoky Paprika Chicken & Black Bean Burrito Bowls with Avocado (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Assemble bowl with 2 tbsp cooked quinoa (25g dry), 1/4 avocado, 140g chicken breast, and 1/3 cup black beans.",
         "ingredients": [
@@ -572,7 +572,7 @@ ALISON_DEFICIT_RECIPES = [
     },
     {
         "id": "c4_opt3",
-        "name": "Herb-Marinated Grilled Tofu & Mediterranean Quinoa Bowl with Tzatziki (Alison Deficit)",
+        "name": "Herb-Marinated Grilled Tofu & Mediterranean Quinoa Bowl with Tzatziki (Mild Deficit)",
         "servings": 1,
         "portion_tip": "Grill 180g Macro firm tofu with 2 tbsp quinoa and fresh Greek salad with Chobani tzatziki.",
         "ingredients": [
@@ -589,7 +589,7 @@ ALISON_DEFICIT_RECIPES = [
 
 if __name__ == "__main__":
     print("=" * 80)
-    print("PROFILE 1: STANDARD ATHLETIC TARGET (Kenneth: 44g+ Protein | ~500 kcal)")
+    print("PROFILE 1: STANDARD ATHLETIC TARGET (Athletic Target: 44g+ Protein | ~500 kcal)")
     print("=" * 80 + "\n")
     for r in RECIPES:
         res = calc_recipe(r["name"], r["servings"], r["ingredients"])
@@ -598,9 +598,9 @@ if __name__ == "__main__":
         print(f"  -> {ps['protein']}g Protein | {ps['carbs']}g Carbs ({ps['fiber']}g Fiber) | {ps['fat']}g Fat | {ps['cals']} kcal")
 
     print("\n" + "=" * 80)
-    print("PROFILE 2: MILD DEFICIT & ENDO BALANCE (Alison: 35-43g Protein | ~380 kcal)")
+    print("PROFILE 2: MILD DEFICIT & ENDO BALANCE (Mild Deficit & Endo Balance: 35-43g Protein | ~380 kcal)")
     print("=" * 80 + "\n")
-    for r in ALISON_DEFICIT_RECIPES:
+    for r in MILD_DEFICIT_RECIPES:
         res = calc_recipe(r["name"], r["servings"], r["ingredients"])
         ps = res["per_serving"]
         print(f"{r['id']}: {r['name']}")
