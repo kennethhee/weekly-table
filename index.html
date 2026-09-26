@@ -674,10 +674,12 @@
       padding: 12px 14px 14px;
       overflow-x: auto;
       background: var(--bg-warm);
+      -webkit-overflow-scrolling: touch;
     }
 
     .audit-table {
       width: 100%;
+      min-width: 560px;
       border-collapse: collapse;
       font-size: 11.5px;
       text-align: left;
@@ -689,14 +691,35 @@
       font-size: 9.5px;
       letter-spacing: 0.04em;
       color: var(--text-muted);
-      padding: 6px 6px;
+      padding: 6px 8px;
       border-bottom: 1.5px solid var(--border);
+      white-space: nowrap;
     }
 
     .audit-table td {
-      padding: 6px 6px;
+      padding: 6px 8px;
       border-bottom: 1px solid #EBE5DB;
       color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .audit-table td:first-child,
+    .audit-table th:first-child {
+      white-space: normal;
+      min-width: 155px;
+      position: sticky;
+      left: 0;
+      background: var(--bg-warm);
+      z-index: 2;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.03);
+    }
+
+    .audit-table tfoot td:first-child {
+      background: var(--surface-subtle);
+    }
+
+    .audit-table tfoot tr:last-child td:first-child {
+      background: var(--olive-light);
     }
 
     .audit-table tr:last-child td {
@@ -708,6 +731,7 @@
       border-top: 1.5px solid var(--border);
       background: var(--surface-subtle);
       color: var(--text-main);
+      white-space: nowrap;
     }
 
     .audit-footer-note {
