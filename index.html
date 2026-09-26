@@ -372,6 +372,243 @@
       border-top: 1px dashed var(--border);
       display: flex;
       justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-card-details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .btn-card-details:hover {
+      background: var(--olive-light);
+      border-color: var(--olive);
+      color: var(--olive-dark);
+      transform: translateY(-0.5px);
+    }
+
+    /* Recipe & Macro Details Dialog Modal */
+    dialog.meal-modal {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      color: var(--text-main);
+      box-shadow: 0 24px 50px rgba(36, 34, 32, 0.18), 0 4px 14px rgba(36, 34, 32, 0.08);
+      padding: 0;
+      max-width: 660px;
+      width: calc(100% - 32px);
+      max-height: 88vh;
+      margin: auto;
+      overflow: hidden;
+      animation: modalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    dialog.meal-modal::backdrop {
+      background-color: rgba(36, 34, 32, 0.48);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-scrollable {
+      max-height: calc(88vh - 66px);
+      overflow-y: auto;
+      padding: 24px 28px 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .modal-container-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--olive);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .modal-close-btn {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 18px;
+      line-height: 1;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .modal-close-btn:hover {
+      background: #EAE3D6;
+      color: var(--text-main);
+    }
+
+    .modal-macros-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 580px) {
+      .modal-macros-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .modal-scrollable {
+        padding: 18px 18px 16px;
+      }
+    }
+
+    .macro-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .macro-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .macro-val {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .macro-val.highlight {
+      color: var(--olive);
+    }
+
+    .modal-section {
+      margin-top: 18px;
+    }
+
+    .modal-section-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-list-bullet {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .modal-list-bullet li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .modal-list-bullet li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--olive);
+      font-weight: bold;
+    }
+
+    .modal-list-steps {
+      padding-left: 20px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-list-steps li {
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .modal-footer-bar {
+      border-top: 1px solid var(--border);
+      background: var(--surface-subtle);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary-olive {
+      background: var(--olive);
+      color: #FFFFFF;
+      border: 1px solid var(--olive-dark);
+    }
+    .btn-primary-olive:hover {
+      background: var(--olive-dark);
+      color: #FFFFFF;
+    }
+
+    .btn-selected {
+      background: var(--olive-light);
+      color: var(--olive);
+      border: 1px solid #D6E0D4;
+      cursor: default;
     }
 
     /* Weekly Calendar Spread & Table */
@@ -1400,6 +1637,65 @@
       <div id="recipe-cards-container"></div>
     </section>
 
+    <!-- Recipe & Macros Details Modal Dialog -->
+    <dialog id="meal-modal" class="meal-modal" closedby="any" aria-labelledby="modal-meal-title">
+      <div class="modal-scrollable">
+        <div class="modal-header-row">
+          <div>
+            <div class="modal-container-tag" id="modal-container-tag">Container 1</div>
+            <h3 class="modal-title" id="modal-meal-title">Recipe Title</h3>
+          </div>
+          <button class="modal-close-btn" onclick="closeMealModal()" aria-label="Close details popup">×</button>
+        </div>
+
+        <div class="option-badges" id="modal-badges" style="margin-bottom: 12px;"></div>
+
+        <!-- 4-Column Macro Highlight Ribbon -->
+        <div class="modal-macros-grid">
+          <div class="macro-item">
+            <span class="macro-label">Protein</span>
+            <span class="macro-val highlight" id="modal-macro-protein">46g</span>
+          </div>
+          <div class="macro-item">
+            <span class="macro-label">Carbs & Fiber</span>
+            <span class="macro-val" id="modal-macro-carbs">40g</span>
+          </div>
+          <div class="macro-item">
+            <span class="macro-label">Healthy Fats</span>
+            <span class="macro-val" id="modal-macro-fat">12g</span>
+          </div>
+          <div class="macro-item">
+            <span class="macro-label">Calories</span>
+            <span class="macro-val" id="modal-macro-cals">460 kcal</span>
+          </div>
+        </div>
+
+        <!-- Ingredients Section -->
+        <div class="modal-section">
+          <h4 class="modal-section-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            Ingredients & Measurements
+          </h4>
+          <ul class="modal-list-bullet" id="modal-ingredients-list"></ul>
+        </div>
+
+        <!-- Preparation & Cooking Steps Section -->
+        <div class="modal-section">
+          <h4 class="modal-section-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Preparation & Method
+          </h4>
+          <ol class="modal-list-steps" id="modal-method-list"></ol>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer-bar">
+        <button class="btn" onclick="closeMealModal()">Close</button>
+        <button class="btn btn-primary-olive" id="modal-select-btn" onclick="selectMealFromModal()">Select This Meal</button>
+      </div>
+    </dialog>
+
   </main>
 
   <script>
@@ -1795,6 +2091,24 @@
       renderShoppingList();
       renderSpecials();
       renderRecipeCards();
+
+      // Modern Web Guidance: Backdrop click fallback for Safari/iOS
+      const mealModal = document.getElementById('meal-modal');
+      if (mealModal && !('closedBy' in HTMLDialogElement.prototype)) {
+        mealModal.addEventListener('click', (event) => {
+          if (event.target !== mealModal) return;
+          const rect = mealModal.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (!isDialogContent) {
+            mealModal.close();
+          }
+        });
+      }
     }
 
     function switchTab(tabId, el) {
@@ -1802,6 +2116,79 @@
       document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
       document.getElementById('tab-' + tabId).classList.add('active');
       if (el) el.classList.add('active');
+    }
+
+    // =========================================================================
+    // MODAL POPUP: RECIPE INGREDIENTS & MACROS
+    // =========================================================================
+
+    let currentModalContext = null;
+
+    function openMealModal(event, containerKey, optionIndex) {
+      if (event) {
+        event.stopPropagation();
+      }
+      const containerData = CATALOG[containerKey];
+      if (!containerData) return;
+      const meal = containerData.options[optionIndex];
+      if (!meal) return;
+
+      currentModalContext = { containerKey, optionIndex };
+
+      const modal = document.getElementById('meal-modal');
+      const isSelected = selectedMeals[containerKey] === optionIndex;
+
+      document.getElementById('modal-container-tag').innerText = containerData.name;
+      document.getElementById('modal-meal-title').innerText = meal.title;
+
+      // Macros
+      document.getElementById('modal-macro-protein').innerText = meal.protein || '-';
+      document.getElementById('modal-macro-carbs').innerText = meal.carbs || '-';
+      document.getElementById('modal-macro-fat').innerText = meal.fat || '-';
+      document.getElementById('modal-macro-cals').innerText = meal.cals || '-';
+
+      // Badges
+      const badgesContainer = document.getElementById('modal-badges');
+      badgesContainer.innerHTML = `
+        ${meal.special ? `<span class="badge special">${meal.special}</span>` : ''}
+        <span class="badge prep">${meal.prep}</span>
+        <span class="badge clinical">${meal.clinical}</span>
+        <span class="badge" style="background:var(--surface-subtle); color:var(--text-muted);">${meal.cuisine || 'Batch Prep'}</span>
+      `;
+
+      // Ingredients
+      const ingList = document.getElementById('modal-ingredients-list');
+      ingList.innerHTML = meal.ingredients.map(ing => `<li>${ing}</li>`).join('');
+
+      // Method
+      const methodList = document.getElementById('modal-method-list');
+      methodList.innerHTML = meal.method.map(step => `<li>${step}</li>`).join('');
+
+      // Select button state
+      const selectBtn = document.getElementById('modal-select-btn');
+      if (isSelected) {
+        selectBtn.innerHTML = '✓ Selected for This Week';
+        selectBtn.className = 'btn btn-selected';
+        selectBtn.disabled = true;
+      } else {
+        const shortName = containerData.name.split(':')[0];
+        selectBtn.innerHTML = `Select for ${shortName}`;
+        selectBtn.className = 'btn btn-primary-olive';
+        selectBtn.disabled = false;
+      }
+
+      modal.showModal();
+    }
+
+    function selectMealFromModal() {
+      if (!currentModalContext) return;
+      selectOption(currentModalContext.containerKey, currentModalContext.optionIndex);
+      closeMealModal();
+    }
+
+    function closeMealModal() {
+      const modal = document.getElementById('meal-modal');
+      if (modal) modal.close();
     }
 
     // =========================================================================
@@ -1834,8 +2221,13 @@
               </div>
             </div>
             <div class="option-macros">
-              <strong>${opt.protein}</strong>
-              <span>${opt.cals}</span>
+              <div>
+                <strong>${opt.protein}</strong> • <span>${opt.cals}</span>
+              </div>
+              <button type="button" class="btn-card-details" onclick="openMealModal(event, '${cKey}', ${idx})" title="View Ingredients & Macros">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -1px; margin-right: 3px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                Details
+              </button>
             </div>
           `;
           gridEl.appendChild(card);
@@ -1912,12 +2304,14 @@
           lunch: {
             title: m1.title,
             portion: "1 of 4",
-            action: "Prepped Sunday glass bake"
+            action: "Prepped Sunday glass bake",
+            cKey: 'container_1'
           },
           dinner: {
             title: m2.title,
             portion: "1 of 3",
-            action: "Cook 6 servings in Dutch oven"
+            action: "Cook 6 servings in Dutch oven",
+            cKey: 'container_2'
           },
           tip: "Stew covers Mon, Tue, and Wed"
         },
@@ -1930,12 +2324,14 @@
           lunch: {
             title: m1.title,
             portion: "2 of 4",
-            action: "Eat cold or warm in container"
+            action: "Eat cold or warm in container",
+            cKey: 'container_1'
           },
           dinner: {
             title: m2.title,
             portion: "2 of 3",
-            action: "Reheat 3 mins (flavors deeper)"
+            action: "Reheat 3 mins (flavors deeper)",
+            cKey: 'container_2'
           },
           tip: "Zero active cooking tonight"
         },
@@ -1948,12 +2344,14 @@
           lunch: {
             title: m1.title,
             portion: "3 of 4",
-            action: "Eat cold or warm in container"
+            action: "Eat cold or warm in container",
+            cKey: 'container_1'
           },
           dinner: {
             title: m2.title,
             portion: "3 of 3",
-            action: "Final portions of Cacciatore stew"
+            action: "Final portions of Cacciatore stew",
+            cKey: 'container_2'
           },
           tip: "Zero active cooking tonight"
         },
@@ -1966,12 +2364,14 @@
           lunch: {
             title: m1.title,
             portion: "4 of 4",
-            action: "Final glass bake lunch container"
+            action: "Final glass bake lunch container",
+            cKey: 'container_1'
           },
           dinner: {
             title: m3.title,
             portion: "1 of 2",
-            action: "Pan-sear 4 salmon; roast broccolini"
+            action: "Pan-sear 4 salmon; roast broccolini",
+            cKey: 'container_3'
           },
           tip: "Cook lentils & broccolini for 2 nights"
         },
@@ -1989,7 +2389,8 @@
           dinner: {
             title: m3.title,
             portion: "2 of 2",
-            action: "Reheat lentils hot; warm fish gently"
+            action: "Reheat lentils hot; warm fish gently",
+            cKey: 'container_3'
           },
           tip: "Warm fish at 50% power (60s) to keep moist"
         },
@@ -2007,7 +2408,8 @@
           dinner: {
             title: m4.title,
             portion: "1 of 2",
-            action: "Flash-sear chicken 8 mins in skillet"
+            action: "Flash-sear chicken 8 mins in skillet",
+            cKey: 'container_4'
           },
           tip: "Stir tzatziki; assemble 4 warm wraps"
         },
@@ -2025,7 +2427,8 @@
           dinner: {
             title: m4.title,
             portion: "2 of 2",
-            action: "Assemble wraps in 3 mins from fridge"
+            action: "Assemble wraps in 3 mins from fridge",
+            cKey: 'container_4'
           },
           tip: "Run 10-Min Glass-Bake for Mon–Thu"
         }
@@ -2041,7 +2444,7 @@
           </div>
 
           <div class="col-body">
-            <div class="calendar-event lunch">
+            <div class="calendar-event lunch" ${d.lunch.cKey ? `onclick="openMealModal(event, '${d.lunch.cKey}', selectedMeals['${d.lunch.cKey}'])" style="cursor:pointer;" title="Tap to view recipe & ingredients"` : ''}>
               <div>
                 <div class="event-tag-row">
                   <span class="event-tag lunch">Lunch</span>
@@ -2052,7 +2455,7 @@
               <div class="event-action">${d.lunch.action}</div>
             </div>
 
-            <div class="calendar-event dinner">
+            <div class="calendar-event dinner" ${d.dinner.cKey ? `onclick="openMealModal(event, '${d.dinner.cKey}', selectedMeals['${d.dinner.cKey}'])" style="cursor:pointer;" title="Tap to view recipe & ingredients"` : ''}>
               <div>
                 <div class="event-tag-row">
                   <span class="event-tag dinner">Dinner</span>
@@ -2077,11 +2480,11 @@
           <td>
             <span class="col-status-badge ${d.statusClass}">${d.status}</span>
           </td>
-          <td>
+          <td ${d.lunch.cKey ? `onclick="openMealModal(event, '${d.lunch.cKey}', selectedMeals['${d.lunch.cKey}'])" style="cursor:pointer;" title="Tap to view recipe & ingredients"` : ''}>
             <span class="table-meal-title">${d.lunch.title}</span>
             <span class="table-meal-meta">${d.lunch.portion} • ${d.lunch.action}</span>
           </td>
-          <td>
+          <td ${d.dinner.cKey ? `onclick="openMealModal(event, '${d.dinner.cKey}', selectedMeals['${d.dinner.cKey}'])" style="cursor:pointer;" title="Tap to view recipe & ingredients"` : ''}>
             <span class="table-meal-title">${d.dinner.title}</span>
             <span class="table-meal-meta">${d.dinner.portion} • ${d.dinner.action}</span>
           </td>
