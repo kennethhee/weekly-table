@@ -115,11 +115,6 @@ FOOD_DATABASE = {
         "protein": 7.5, "carbs": 79.0, "fiber": 1.8, "fat": 0.8, "cals": 355,
         "source": "SunRice Pack NIP"
     },
-    "quinoa_dry": {
-        "name": "Quinoa, raw tricolour (Macro Organic)",
-        "protein": 13.5, "carbs": 62.0, "fiber": 7.0, "fat": 5.8, "cals": 372,
-        "source": "Macro Organic Pack NIP"
-    },
     "wrap_gluten_free": {
         "name": "Simson's / Helga's Gluten-Free Wrap (per 100g ~ 2 wraps)",
         "protein": 4.2, "carbs": 48.0, "fiber": 5.2, "fat": 6.8, "cals": 280,
@@ -422,19 +417,19 @@ RECIPE_SPECS = {
         "title": "Tuscan Herb Chicken, Mushroom & Cannellini Glass Bake",
         "cuisine": "Tuscan / Italian",
         "protein_category": "Poultry",
-        "special": "Macro Quinoa & Chicken Special",
+        "special": "SunRice Jasmine & Cannellini Special",
         "prep": "Direct-in-Glass Oven Bake",
         "clinical": "Prebiotic Beta-Glucans & Soluble Fiber",
         "flavor_multipliers": [
             "Bloomed rosemary, thyme, and sage in warm EVOO",
-            "Mushroom umami fond absorption into quinoa",
+            "Mushroom umami fond absorption into jasmine rice",
             "Fresh lemon zest off-heat finishing",
             "Steam-wilted tender baby spinach folded under lid"
         ],
         "standard_servings": 4,
         "standard_ingredients_raw": [
             ("chicken_breast_raw", 700),
-            ("quinoa_dry", 180),
+            ("jasmine_rice_dry", 190),
             ("cannellini_canned_drained", 240),
             ("button_mushrooms_raw", 300),
             ("baby_spinach_raw", 120),
@@ -442,10 +437,10 @@ RECIPE_SPECS = {
             ("extra_virgin_olive_oil", 14)
         ],
         "deficit_servings": 1,
-        "deficit_portion_tip": "Assemble container with 140g raw chicken breast, 2 tbsp dry quinoa (25g), 1/3 cup cannellini beans, generous mushrooms, and baby spinach.",
+        "deficit_portion_tip": "Assemble container with 140g raw chicken breast, 2 tbsp dry jasmine rice (25g), 1/3 cup cannellini beans, generous mushrooms, and baby spinach.",
         "deficit_ingredients_raw": [
             ("chicken_breast_raw", 140),
-            ("quinoa_dry", 25),
+            ("jasmine_rice_dry", 25),
             ("cannellini_canned_drained", 60),
             ("button_mushrooms_raw", 80),
             ("baby_spinach_raw", 40),
@@ -454,7 +449,7 @@ RECIPE_SPECS = {
         ],
         "ingredient_display": [
             "700g Woolworths/Coles RSPCA Chicken Breast Fillets (4 x 175g portions)",
-            "180g Macro Organic Tricolour Quinoa (raw, ~1 cup)",
+            "190g SunRice Jasmine Fragrant White Rice (raw, ~1 cup)",
             "240g canned cannellini beans (rinsed & drained, ~1 tin)",
             "300g white button / cup mushrooms (sliced)",
             "120g baby spinach leaves",
@@ -463,11 +458,11 @@ RECIPE_SPECS = {
             "1 lemon (juiced & zested) + 4 cloves garlic (minced) + 1 tbsp dried Tuscan herbs (rosemary, thyme, sage) + sea salt"
         ],
         "method": [
-            "Distribute 180g rinsed raw quinoa, 240g drained cannellini beans, and 300g sliced cup mushrooms evenly into 4 glass meal prep dishes.",
+            "Distribute 190g raw jasmine rice, 240g drained cannellini beans, and 300g sliced cup mushrooms evenly into 4 glass meal prep dishes.",
             "In a pan, bloom 1 tbsp dried Tuscan herbs (rosemary and thyme) and 4 cloves minced garlic in 14g olive oil for 30 seconds, then pour in 500ml chicken bone broth and bring to a rolling boil. Whisk in fresh lemon juice and zest.",
             "Lay 175g chicken breast into each container. Pour 125ml boiling herb broth over each.",
             "Cover tightly with foil and bake at 180°C fan-forced for 32 minutes.",
-            "Remove foil, pack 120g fresh baby spinach over the hot chicken and quinoa to steam-wilt under the lid for 5 minutes, then cool and seal."
+            "Remove foil, pack 120g fresh baby spinach over the hot chicken and rice to steam-wilt under the lid for 5 minutes, then cool and seal."
         ]
     },
 
@@ -1168,7 +1163,7 @@ def verify_all_invariants():
         "chicken", "rice", "chickpeas", "tomatoes", "cucumber", "olives", "broth",
         "olive oil", "lemon", "garlic", "oregano", "turmeric", "black beans",
         "capsicum", "sweet corn", "paprika", "cumin", "lime", "coriander",
-        "quinoa", "cannellini", "mushrooms", "spinach", "turkey", "onion",
+        "cannellini", "mushrooms", "spinach", "turkey", "onion",
         "chili", "parsley", "cinnamon", "ginger", "sweet potato", "beef",
         "butter beans", "thyme", "salmon", "lentils", "broccolini", "tahini",
         "edamame", "bok choy", "tamari", "prawns", "cabbage", "avocado",
@@ -1319,7 +1314,6 @@ def verify_all_invariants():
         "sweet_corn_canned": "Pantry & Legumes",
         "bone_broth_chicken": "Pantry & Legumes",
         "jasmine_rice_dry": "Pantry & Grains",
-        "quinoa_dry": "Pantry & Grains",
         "wrap_gluten_free": "Bakery & Health",
         "extra_virgin_olive_oil": "Pantry Oils & Condiments",
         "tahini_unhulled": "Health & Spreads",
